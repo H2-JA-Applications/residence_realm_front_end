@@ -13,7 +13,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 const App = () => {
 
     document.title = "Residence Realm";
-    document.innerHTML = <link rel="icon" href="/notepad-background.png" />;
+    document.innerHTML = <link rel="icon" href="../notepad-background.png" />;
 
     return(
         <BrowserRouter>
