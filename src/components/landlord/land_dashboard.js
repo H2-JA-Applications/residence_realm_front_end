@@ -26,10 +26,10 @@ const Land_Dashboard = () => {
             <div class="dashboard">
                 <section class="single-column">
                     <p class="heading">Menu Options</p>
-                    <Link to="/landlord_dashboard/add_rentals"><button type = "button" class="dashboard-button">Received Payments</button></Link>
-                    <Link to="/landlord_dashboard/payment"><button type = "button" class="dashboard-button">Track Late Payment</button></Link>
-                    <Link to="/landlord_dashboard/view_receipts"><button type = "button" class="dashboard-button">Manage Fiances</button></Link>
-                    <Link to="/landlord_dashboard/payment_detail"><button type = "button" class="dashboard-button">Add Rental</button></Link>
+                    <Link to="/landlord_dashboard/receive_pay"><button type = "button" class="dashboard-button">Received Payments</button></Link>
+                    <Link to="/landlord_dashboard/track_late"><button type = "button" class="dashboard-button">Track Late Payment</button></Link>
+                    <Link to="/landlord_dashboard/manage_pay"><button type = "button" class="dashboard-button">Manage Fiances</button></Link>
+                    <Link to="/landlord_dashboard/add_rentals"><button type = "button" class="dashboard-button">Add Rental</button></Link>
                 </section>
             </div>
 
