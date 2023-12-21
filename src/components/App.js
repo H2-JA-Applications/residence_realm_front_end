@@ -4,8 +4,8 @@ import Rental from "./tenant/rentals";
 import Payment from "./tenant/payment";
 import Receipts from "./tenant/receipts";
 import Payment_Details from "./tenant/payment_dets";
-import Land_Dashboard from "./landord_dashboard/land_dashboard";
-import Add_Rental from "./Add_Rental/add_rentals";
+import Land_Dashboard from "./landlord/land_dashboard";
+import Add_Rental from "./landlord/add_rentals";
 
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom'

@@ -31,7 +31,7 @@ const Ten_Dashboard = () => {
                 </AppBar>
             </Box>
             <div class="dashboard">
-                <p class="upcoming"> Upcoming payment: {date.toLocaleDateString()}</p>
+                <p class="upcoming">Upcoming payment: {date.toLocaleDateString()}</p>
                 <p class="heading">Menu Options</p>
                 <section class="single-column">
                     <Link to="/tenant_dashboard/choose_rental"><button type = "button" class="dashboard-button">Choose Rental</button></Link>
