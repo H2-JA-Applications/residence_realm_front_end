@@ -1,15 +1,31 @@
 import React from 'react';
 import rrlogo from "../../images/rrlogo.png"
-
+import { Link } from 'react-router-dom';
+import LogoutIcon from '@mui/icons-material/Logout';
+import IconButton from '@mui/material/IconButton';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
 const Add_Rental = () => {
     return(
         <body>
-            <div class="profile">
-                <label>Add Rental</label>
-            </div>
-            <div class="form">
-            <img class="logo" src={rrlogo} alt = ""/>
-                <section class="gridbox">
+            <Box class="navboard" sx={{ flexGrow: 1}}>
+                <AppBar position="static">
+                    <Toolbar class="navbar">
+                        <Avatar class="small-logo" alt="Residence Realm Logo" src={rrlogo}/>
+                        <Typography class="title">Land Dashboard</Typography>
+                        <Link to="/">
+                        <IconButton aria-label="delete" size="large" color='secondary'>
+                            <LogoutIcon fontSize="inherit"/>
+                        </IconButton></Link>
+                    </Toolbar>
+                </AppBar>
+            </Box>
+            <div class="panel">
+                <section class="single-column">
+                <section class="double-column">
                     <div class="input-form">
                         <input class="input" id="l_address" type="text" required name="l_address"/>
                         <label class="label" for="l_address">Address</label>
@@ -29,13 +45,12 @@ const Add_Rental = () => {
                         <option value="house">House</option>
                     </select>
                 </section>
-                <section class="buttons">
                     <div class="input-form">
                             <input class="input" id="apt_num" type="text" required name="apt_num"/>
                             <label class="label" for="apt_num">Apt Number</label>
                     </div>
                     <button type = "button" class="dashboard-button">Add Property</button>
-                    <button type = "button" class="dashboard-button">Back To Dashboard</button>
+                    <Link to="/landlord_dashboard"><button type = "button" class="dashboard-button">Back To Dashboard</button></Link>
                 </section>
             </div>
         </body>

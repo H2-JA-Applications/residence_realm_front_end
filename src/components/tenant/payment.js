@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 
 const Payment = () => {
+
     return(
         <body>
             <Box class="navboard" sx={{ flexGrow: 1}}>
@@ -24,6 +25,10 @@ const Payment = () => {
                     </Toolbar>
                 </AppBar>
             </Box>
+
+
+
+
             <div class="panel">
                 <section class="single-column">
                     <select name="role" id="role" selectedIndex="-1" class="input2">
