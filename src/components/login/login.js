@@ -63,7 +63,7 @@ const Login = ({setToken}) => {
         let user = {email:log_email, password:log_password}
         AuthService.loginUser(user).then(()=>{
             alert("login");
-            navigate("/tenant_dashboard")
+            navigate("/landlord_dashboard")
         }, ()=>{
             alert("failed!");
         });

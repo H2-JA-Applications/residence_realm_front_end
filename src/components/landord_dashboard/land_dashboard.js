@@ -14,7 +14,7 @@ const Land_Dashboard = () => {
                     <Link to="/tenant_dashboard/choose_rental"><button type = "button" class="dashboard-button">Received Payments</button></Link>
                     <Link to="/tenant_dashboard/payment"><button type = "button" class="dashboard-button">Track Late Payment</button></Link>
                     <Link to="/tenant_dashboard/view_receipts"><button type = "button" class="dashboard-button">Manage Fiances</button></Link>
-                    <Link to="/tenant_dashboard/payment_detail"><button type = "button" class="dashboard-button">Add Rental</button></Link>
+                    <Link to="/landlord_dashboard/add_rentals"><button type = "button" class="dashboard-button">Add Rental</button></Link>
                 </section>
             </div>
 
