@@ -1,6 +1,6 @@
 import Login from "./login/login";
 import Ten_Dashboard from "./tenant/ten_dashboard";
-import Rental from "./choose_rental/rentals";
+import Rental from "./tenant/rentals";
 import Payment from "./pay_rent/payment";
 import Receipts from "./confirm_receipt/receipts";
 import Payment_Details from "./payment_details/payment_dets";
