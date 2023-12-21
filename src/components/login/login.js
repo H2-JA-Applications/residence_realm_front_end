@@ -115,7 +115,7 @@ const Login = ({setToken}) => {
                         <img class="med-logo" src={rrlogo} alt = ""/>
                         <label>Sign-up Information:</label>
                         <select onChange = {handleRole} value={role} name="role" id="role" selectedIndex="-1" required>
-                            <option value="">--</option>
+                            <option value="">Select a Role</option>
                             <option value="tenant">Tenant</option>
                             <option value="landlord">Landlord</option>
                         </select>

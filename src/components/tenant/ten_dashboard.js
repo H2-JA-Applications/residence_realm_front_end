@@ -38,7 +38,7 @@ const Ten_Dashboard = () => {
                     <Link to="/tenant_dashboard/payment"><button type = "button" class="dashboard-button">Make Payment</button></Link>
                     <Link to="/tenant_dashboard/view_receipts"><button type = "button" class="dashboard-button">View Receipts</button></Link>
                     <Link to="/tenant_dashboard/payment_detail"><button type = "button" class="dashboard-button">Pay History</button></Link>
-                    <Link to="/"><button type = "button" class="dashboard-button">Remove Rentals</button></Link>
+                    <Link to="/tenant_dashboard"><button type = "button" class="dashboard-button">Remove Rentals</button></Link>
                 </section>
             </div>
         </body>

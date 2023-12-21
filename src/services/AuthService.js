@@ -32,8 +32,8 @@ class AuthService{
             if (response.data && response.data.token) {
                 this.saveToken(response.data.token);
             }
+            console.log(JSON.stringify(response.data.token))
             return response.data;
-            console.log(JSON.stringify(response.data))
         });
         // fetch(loginUrl,{
         //     method: 'POST',
