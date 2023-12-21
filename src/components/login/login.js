@@ -4,8 +4,9 @@ import { loginElements } from '../../utils/login_script';
 import rrlogo from "../../images/rrlogo.png"
 import '../styles/app.css';
 import AuthService from '../../services/AuthService';
+import PropTypes from 'prop-types'
 
-function Login() {
+const Login = ({setToken}) => {
     let [firstName, setFirstName] = useState('');
     let [lastName, setLastName] = useState('');
     let [phoneNumber, setPhone_Number] = useState('');
@@ -15,6 +16,9 @@ function Login() {
     let [con_password, setConfirmPassword] = useState('');
     let [role, setRole] = useState('');
 
+    let [log_email, setLogEmail] = useState('');
+    let [log_password, setLogPassword] = useState('');
+
     let handleFirstName = (e) => { setFirstName(e.target.value) }
     let handleLasttName = (e) => { setLastName(e.target.value) }
     let handleNumber = (e) => { setPhone_Number(e.target.value) }
@@ -23,6 +27,10 @@ function Login() {
     let handlePassword = (e) => { setPassword(e.target.value) }
     let handleConPassword = (e) => { setConfirmPassword(e.target.value) }
     let handleRole =  (e) => { setRole(e.target.value) }
+
+    let handleLogEmail = (e) => { setLogEmail(e.target.value) }
+    let handleLogPassword = (e) => { setLogPassword(e.target.value) }
+
 
     let navigate = useNavigate();
     let handleSubmit = (e) => {
@@ -35,7 +43,7 @@ function Login() {
             if (role === "landlord"){
                 AuthService.addLandlord(user).then(()=>{
                     alert("Signed up as new landlord!");
-                    navigate("/");
+                    window.location.reload(false);
                 }, ()=>{
                     alert("Landlord creation failed!");
                 });    
@@ -43,13 +51,31 @@ function Login() {
             else if (role === "tenant"){
                 AuthService.addTenant(user).then(()=>{
                     alert("Signed up as new tenant!");
-                    navigate("/");
+                    window.location.reload(false);
                 }, ()=>{
                     alert("Tenant creation failed!");
                 });  
             }
         }
     }
+    let handleSubmit2 = (e) => {
+        e.preventDefault();
+        let user = {email:log_email, password:log_password}
+        AuthService.loginUser(user).then(()=>{
+            alert("login");
+            console.log(AuthService.saveToken)
+            navigate("/tenant_dashboard")
+        }, ()=>{
+            alert("failed!");
+        });
+
+    }
+
+        // let userlogin = { email: email, password: password}
+        // const token = await AuthService.loginUser(userlogin)
+        // setToken(token);
+        // navigate("/tenant_dashboard"); 
+    
     useEffect(() => {
         loginElements();
     }, []);
@@ -62,21 +88,19 @@ function Login() {
                     <span class="underline"></span>
                 </button>
 
-                <form action="/tenant_dashboard" method="get" class="form form-login">
+                <form onSubmit={handleSubmit2} class="form form-login">
                     <section class="single-column">
                         <img class="med-logo" src={rrlogo} alt = ""/>
                         <label>Log-in Information:</label>
                         <div class="input-form"> {/* Email */}
-                            <input class="input" id="login-email" type="text" required name="login-email"/>
+                            <input class="input" onChange = {handleLogEmail} value = {log_email} id="login-email" type="text" required name="login-email"/>
                             <label class="label" for="login-email">Email</label>
                         </div>
                         <div class="input-form"> {/* Password */}
-                            <input class="input" id="login-pass" type="password" required name="login-pass"/>
+                            <input class="input" onChange = {handleLogPassword}  value = {log_password} id="login-pass" type="password" required name="login-pass"/>
                             <label class="label" for="login-pass">Password</label>
                         </div>
-                        <Link to="/tenant_dashboard">
-                            <button type="submit" class="btn-login">Login</button>
-                        </Link>
+                        <input type="submit" value="Submit" class="btn-signup"/>
                     </section>
                 </form>
             </div>
@@ -132,6 +156,9 @@ function Login() {
             </div>
         </div>
     );
+}
+Login.propTypes = {
+    setToken: PropTypes.func.isRequired
 }
 
 export default Login;

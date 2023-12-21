@@ -9,9 +9,13 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import MenuIcon from '@mui/icons-material/Menu';
+import Login from '../login/login';
 
 const Ten_Dashboard = () => {
     const [date] = useState(new Date());
+    
     return(
         <body>
             <Box class="navboard" sx={{ flexGrow: 1}}>
