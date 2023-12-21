@@ -115,7 +115,7 @@ const Login = ({setToken}) => {
                     <section class="single-column">
                         <img class="med-logo" src={rrlogo} alt = ""/>
                         <label>Sign-up Information:</label>
-                        <select onChange = {handleRole} value={role} name="role" id="role" selectedIndex="-1">
+                        <select onChange = {handleRole} value={role} name="role" id="role" selectedIndex="-1" required>
                             <option value="">Select a Role</option>
                             <option value="tenant">Tenant</option>
                             <option value="landlord">Landlord</option>
@@ -134,11 +134,11 @@ const Login = ({setToken}) => {
                         <label class="label" for="signup-phone">Phone Number:</label>
                     </div>
                     <div class="input-form"> {/* Data of Birth */}
-                        <input onChange = {handleDOB} class="input" value={dob} id="signup-dob" type="text" title="Date Format: MM/DD/YYYY"/>
+                        <input onChange = {handleDOB} class="input" value={dob} id="signup-dob" type="text" required title="Date Format: MM/DD/YYYY"/>
                         <label class="label" for="signup-dob">Date of Birth:</label>
                     </div>
                     <div class="input-form"> {/* Email */}
-                        <input onChange = {handleEmail} class="input" value={email} id="signup-email" type="text" title="Not a valid email"/>
+                        <input onChange = {handleEmail} class="input" value={email} id="signup-email" type="text" required title="Not a valid email"/>
                         <label class="label" for="signup-email">Email:</label>
                     </div>
                     <div class="input-form"> {/* Enter Password */}
