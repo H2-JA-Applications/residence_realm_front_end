@@ -67,8 +67,6 @@ const Rental = () => {
                     </div>
                     <p class="dashboard-label">Rent: {selectedRow}</p>
                     <p class="dashboard-label">Due Date: <span></span> {date.toLocaleDateString()}</p>
-                </section>
-                <section class="buttons">
                     <button type = "button" class="dashboard-button">Search Address</button>
                     <button type = "button" class="dashboard-button">Pick Property</button>
                     <Link to="/tenant_dashboard"><button type = "button" class="dashboard-button">Back To Main Menu</button></Link>

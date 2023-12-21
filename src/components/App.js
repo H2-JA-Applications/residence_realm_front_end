@@ -1,9 +1,9 @@
 import Login from "./login/login";
 import Ten_Dashboard from "./tenant/ten_dashboard";
 import Rental from "./tenant/rentals";
-import Payment from "./pay_rent/payment";
-import Receipts from "./confirm_receipt/receipts";
-import Payment_Details from "./payment_details/payment_dets";
+import Payment from "./tenant/payment";
+import Receipts from "./tenant/receipts";
+import Payment_Details from "./tenant/payment_dets";
 import Land_Dashboard from "./landord_dashboard/land_dashboard";
 import Add_Rental from "./Add_Rental/add_rentals";
 
@@ -11,10 +11,8 @@ import Add_Rental from "./Add_Rental/add_rentals";
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 const App = () => {
-
     document.title = "Residence Realm";
-    document.innerHTML = <link rel="icon" href="../notepad-background.png" />;
-
+    document.innerHTML = <link rel="icon" href="../notepad-background.png"/>;
     return(
         <BrowserRouter>
             <Routes>
