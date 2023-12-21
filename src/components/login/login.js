@@ -63,6 +63,7 @@ const Login = ({setToken}) => {
         let user = {email:log_email, password:log_password}
         AuthService.loginUser(user).then(()=>{
             alert("login");
+            console.log(AuthService.saveToken)
             navigate("/tenant_dashboard")
         }, ()=>{
             alert("failed!");

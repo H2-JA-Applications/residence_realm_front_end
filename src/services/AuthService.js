@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 const addTenantUrl = "http://localhost:8080/api/v1/auth/register/tenant";
 const addLandLordUrl = "http://localhost:8080/api/v1/auth/register/landlord";
 const loginUrl = "http://localhost:8080/api/v1/auth/login";
@@ -28,10 +27,14 @@ class AuthService{
         });
     }
     loginUser(user){
-        return axios.post(loginUrl, user);
-
-
-
+        return axios.post(loginUrl, user).then(response => {
+            // Check if the response has a token and save it
+            if (response.data && response.data.token) {
+                this.saveToken(response.data.token);
+            }
+            return response.data;
+            console.log(JSON.stringify(response.data))
+        });
         // fetch(loginUrl,{
         //     method: 'POST',
         //     header: {
@@ -40,7 +43,6 @@ class AuthService{
         //     body: JSON.stringify(user)
         // }).then(data => data.json())
     }
-
 
 }
 export default new AuthService;
