@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {  useNavigate } from 'react-router-dom';
 import { loginElements } from '../../utils/login_script';
 import rrlogo from "../../images/rrlogo.png"
-import '../styles/app.css';
 import AuthService from '../../services/AuthService';
 import PropTypes from 'prop-types'
 
@@ -64,7 +63,7 @@ const Login = ({setToken}) => {
         let user = {email:log_email, password:log_password}
         authService.loginUser(user).then(()=>{
             alert("login");
-            navigate("/landlord_dashboard")
+            navigate("/tenant_dashboard")
         }, ()=>{
             alert("failed!");
         });

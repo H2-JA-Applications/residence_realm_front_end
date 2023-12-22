@@ -9,6 +9,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import PropertyService from '../../services/PropertyService';
+
 const Add_Rental = () => {
 
     let [address, setAddress] = useState('');

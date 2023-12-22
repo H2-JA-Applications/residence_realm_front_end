@@ -11,6 +11,7 @@ import Manage_Pay from "./landlord/manage_pay";
 import Received_Pay from "./landlord/receive_pay";
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { useState } from "react";
+import "./styles/app.css"
 
 const App = () => {
     document.title = "Residence Realm";
