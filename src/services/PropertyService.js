@@ -3,7 +3,7 @@ import {axiosInterceptor} from "../utils/useToken";
 
 axiosInterceptor();
 
-const getAllPropertUrl = "http://localhost:8080/api/properties";
+
 
 
 class PropertyService{
@@ -15,7 +15,9 @@ class PropertyService{
                 'Accept-Encoding': 'gzip,deflate,br',
                 'Connection': 'keep-alive'
             }
-        }
+            
+        };
+        this.getAllPropertUrl = "http://localhost:8080/api/properties";
     };
     addProperty(property){
         return axios.post(this.getAllPropertUrl, property, this.config)
