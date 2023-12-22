@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import { loginElements } from '../../utils/login_script';
 import rrlogo from "../../images/rrlogo.png"
 import '../styles/app.css';
 import AuthService from '../../services/AuthService';
 import PropTypes from 'prop-types'
+
 
 const Login = ({setToken}) => {
     let [firstName, setFirstName] = useState('');
@@ -31,7 +32,7 @@ const Login = ({setToken}) => {
     let handleLogEmail = (e) => { setLogEmail(e.target.value) }
     let handleLogPassword = (e) => { setLogPassword(e.target.value) }
 
-
+    const authService = new AuthService();
     let navigate = useNavigate();
     let handleSubmit = (e) => {
         e.preventDefault();
@@ -41,7 +42,7 @@ const Login = ({setToken}) => {
         else {
             let user = {firstName:firstName, lastName: lastName, email: email, password: password, dob: dob, phoneNumber: phoneNumber}
             if (role === "landlord"){
-                AuthService.addLandlord(user).then(()=>{
+                authService.addLandlord(user).then(()=>{
                     alert("Signed up as new landlord!");
                     window.location.reload(false);
                 }, ()=>{
@@ -49,7 +50,7 @@ const Login = ({setToken}) => {
                 });    
             }
             else if (role === "tenant"){
-                AuthService.addTenant(user).then(()=>{
+                authService.addTenant(user).then(()=>{
                     alert("Signed up as new tenant!");
                     window.location.reload(false);
                 }, ()=>{
@@ -61,7 +62,7 @@ const Login = ({setToken}) => {
     let handleSubmit2 = (e) => {
         e.preventDefault();
         let user = {email:log_email, password:log_password}
-        AuthService.loginUser(user).then(()=>{
+        authService.loginUser(user).then(()=>{
             alert("login");
             navigate("/landlord_dashboard")
         }, ()=>{

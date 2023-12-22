@@ -10,7 +10,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 
-const Payment_Details = () => {
+const PaymentDetails = () => {
     const [date] = useState(new Date());
     return(
         <body>
@@ -45,4 +45,4 @@ const Payment_Details = () => {
 }
 
 
-export default Payment_Details;
+export default PaymentDetails;

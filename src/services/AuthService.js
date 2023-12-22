@@ -1,10 +1,11 @@
 import axios from "axios";
-
+import { axiosInterceptor } from "../utils/useToken.js"; 
+axiosInterceptor();
 const addTenantUrl = "http://localhost:8080/api/v1/auth/register/tenant";
 const addLandLordUrl = "http://localhost:8080/api/v1/auth/register/landlord";
 const loginUrl = "http://localhost:8080/api/v1/auth/login";
 
-class AuthService{
+export default class AuthService{
     saveToken(token) {
         localStorage.setItem("token", token);
     }
@@ -45,7 +46,8 @@ class AuthService{
     }
 
 }
-export default new AuthService;
+
+
 // const requestHTTPOptions = {
 //     method: 'POST',
 //     headers: {

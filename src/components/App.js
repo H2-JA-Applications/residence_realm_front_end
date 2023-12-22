@@ -10,10 +10,12 @@ import Track_Late from "./landlord/track_late";
 import Manage_Pay from "./landlord/manage_pay";
 import Received_Pay from "./landlord/receive_pay";
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { useState } from "react";
 
 const App = () => {
     document.title = "Residence Realm";
     document.innerHTML = <link rel="icon" href="../notepad-background.png"/>;
+    const [token, setToken] = useState();
     return(
         <BrowserRouter>
             <Routes>
@@ -23,7 +25,7 @@ const App = () => {
                 <Route path={"/tenant_dashboard/payment"} element={<Payment/>} exact={true}></Route>
                 <Route path={"/tenant_dashboard/view_receipts"} element={<Receipts/>} exact={true}></Route>
                 <Route path={"/tenant_dashboard/payment_detail"} element={<Payment_Details/>} exact={true}></Route>
-                <Route path={"/landlord_dashboard"} element={<Land_Dashboard/>} exact={true}></Route>
+                <Route path={"/landlord_dashboard"} element={<Land_Dashboard setToken={setToken}/>} exact={true}></Route>
                 <Route path={"/landlord_dashboard/receive_pay"} element={<Received_Pay/>} exact={true}></Route>
                 <Route path={"/landlord_dashboard/track_late"} element={<Track_Late/>} exact={true}></Route>
                 <Route path={"/landlord_dashboard/manage_pay"} element={<Manage_Pay/>} exact={true}></Route>
