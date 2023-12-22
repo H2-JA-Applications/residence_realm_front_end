@@ -8,16 +8,17 @@ axiosInterceptor();
 
 class PropertyService{
     constructor() {
+        const token = localStorage.getItem('token');
         this.config = {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': '*/*',
-                'Accept-Encoding': 'gzip,deflate,br',
-                'Connection': 'keep-alive'
+                'Authorization' : `Bearer ${token}`
             }
             
         };
         this.getAllPropertUrl = "http://localhost:8080/api/properties";
+    
     };
     addProperty(property){
         return axios.post(this.getAllPropertUrl, property, this.config)
@@ -26,19 +27,19 @@ class PropertyService{
         });
     }
     addTenant(propertyId, userID){
-        return axios.post(`${this.getAllPropertUrl}/${propertyId}/add`, userID)
+        return axios.post(`${this.getAllPropertUrl}/${propertyId}/add`, userID, this.config)
         .catch(err => {
             console.error("Error: whille adding tenant", err);
         });
     }
     getAllProperty(){
-        return axios.get(getAllPropertUrl, this.config).catch(err => {
+        return axios.get(this.getAllPropertUrl, this.config).catch(err => {
             console.error("Error: whille getting all property", err)   
         });
     }
 
     getProperty(propertyId){
-        return axios.get(`${getAllPropertUrl}/${propertyId}`, this.config)
+        return axios.get(`${this.getAllPropertUrl}/${propertyId}`, this.config)
         .catch(err => {
             console.error("Error: whille getting property", err);
         });

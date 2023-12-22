@@ -22,6 +22,7 @@ export default class AuthService{
         return axios.post(addLandLordUrl, user).then(response => {
             // Check if the response has a token and save it
             if (response.data && response.data.token) {
+                localStorage.clear();
                 this.saveToken(response.data.token);
             }
             return response.data;
