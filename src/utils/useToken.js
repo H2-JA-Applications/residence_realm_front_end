@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
 
 export const axiosInterceptor = () => {
   axios.interceptors.request.use(config => {
@@ -13,7 +12,7 @@ export const axiosInterceptor = () => {
     error => {
       if (error.response && error.response.status === 401) {
         localStorage.clear();
-        useHistory().push('/');
+        window.location.href = "/";
       }
       return Promise.reject(error);
     }

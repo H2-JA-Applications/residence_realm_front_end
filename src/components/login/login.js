@@ -39,7 +39,7 @@ const Login = ({setToken}) => {
             alert("Passwords don't match");
         } 
         else {
-            let user = {firstName:firstName, lastName: lastName, email: email, password: password, dob: dob, phoneNumber: phoneNumber}
+            let user = {firstName:firstName, lastName: lastName, email: email, password: password, dob: dob, phoneNumber: phoneNumber, role: role}
             if (role === "landlord"){
                 authService.addLandlord(user).then(()=>{
                     alert("Signed up as new landlord!");
@@ -116,8 +116,8 @@ const Login = ({setToken}) => {
                         <label>Sign-up Information:</label>
                         <select onChange = {handleRole} value={role} name="role" id="role" selectedIndex="-1" required>
                             <option value="">Select a Role</option>
-                            <option value="tenant">Tenant</option>
-                            <option value="landlord">Landlord</option>
+                            <option value="TENANT">Tenant</option>
+                            <option value="LANDLORD">Landlord</option>
                         </select>
                     <section class="double-column">
                     <div class="input-form"> {/* First Name */}
