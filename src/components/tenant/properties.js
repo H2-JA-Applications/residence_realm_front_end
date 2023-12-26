@@ -1,45 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Payments = () => {
-  const [payments, setPayments] = useState([]);
-
-  useEffect(() => {
-    axios.get('http://localhost:8080/api/payment/landlord')
-      .then(response => {
-        setPayments(response.data);
-      })
+// Function to fetch payments data and return JSON
+function fetchPaymentsData() {
+  return axios.get('http://localhost:8080/api/payment/landlord')
+      .then(response => response.data) // Extracting JSON from response
       .catch(error => {
-        console.error('There was an error!', error);
+          console.error('There was an error fetching payments data:', error);
+          throw error; // Re-throw the error for the caller to handle
       });
-  }, []);
+}
 
-  return (
-    <table>
-      <thead>
-        <tr>
-          <th>Tenant ID</th>
-          <th>Property ID</th>
-          <th>Amount</th>
-          <th>Timestamp</th>
-          <th>Date Paid</th>
-          <th>Payment Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {payments.map(payment => (
-          <tr key={payment.id}>
-            <td>{payment.tenantId}</td>
-            <td>{payment.propertyId}</td>
-            <td>{payment.amount}</td>
-            <td>{payment.timestamp}</td>
-            <td>{payment.datePaid}</td>
-            <td>{payment.paymentStatus}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
-};
+export default fetchPaymentsData;
 
-export default Payments;
