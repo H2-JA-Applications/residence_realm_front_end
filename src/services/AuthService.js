@@ -11,8 +11,8 @@ export default class AuthService{
     addTenant(user){
         return axios.post(addUser, user).then(response => {
             // Check if the response has a token and save it
-            if (response.data && response.data.token) {
-                this.saveToken(response.data.token);
+            if (response.data && response.data.accessToken) {
+                this.saveToken(response.data.accessToken);
             }
             return response.data;
         })
@@ -20,9 +20,9 @@ export default class AuthService{
     addLandlord(user){
         return axios.post(addUser, user).then(response => {
             // Check if the response has a token and save it
-            if (response.data && response.data.token) {
+            if (response.data && response.data.accessToken) {
                 localStorage.clear();
-                this.saveToken(response.data.token);
+                this.saveToken(response.data.accessToken);
             }
             return response.data;
         });
@@ -30,10 +30,10 @@ export default class AuthService{
     loginUser(user){
         return axios.post(loginUrl, user).then(response => {
             // Check if the response has a token and save it
-            if (response.data && response.data.token) {
+            if (response.data && response.data.accessToken) {
                 this.saveToken(response.data.token);
             }
-            console.log(JSON.stringify(response.data.token))
+            console.log(JSON.stringify(response.data.accessToken))
             return response.data;
         });
     }
