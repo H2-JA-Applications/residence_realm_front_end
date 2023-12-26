@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-import { landlord_properties } from '../landlord/stuff';
+import { useLandlordProperties } from '../landlord/stuff';
 const Received_Pay = () => {
     return(
         <body>
@@ -38,7 +38,7 @@ const Received_Pay = () => {
                         </tr>
                     </thead>
                     <tbody>
-                            {landlord_properties.map((property, index) => (
+                            {useLandlordProperties.map((property, index) => (
                                 <tr
                                     class="row"
                                     key={index}

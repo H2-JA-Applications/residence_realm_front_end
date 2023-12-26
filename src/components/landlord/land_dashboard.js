@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-import { landlord_properties } from '../landlord/stuff';
+import { useLandlordProperties } from '../landlord/stuff';
 import { useNavigate } from 'react-router-dom';
 const Land_Dashboard = () => {
 
@@ -50,7 +50,7 @@ const Land_Dashboard = () => {
                         </tr>
                     </thead>
                     <tbody>
-                    {landlord_properties.map(property => (
+                    {useLandlordProperties.map(property => (
                     <tr className="row" key={property.id}>
                             <td>{property.address}</td>
                             <td>{property.rent}</td>

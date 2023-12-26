@@ -4,8 +4,8 @@ import { loginElements } from '../../utils/login_script';
 import rrlogo from "../../images/rrlogo.png"
 import AuthService from '../../services/AuthService';
 import PropTypes from 'prop-types'
-
-
+ 
+ 
 const Login = ({setToken}) => {
     let [firstName, setFirstName] = useState('');
     let [lastName, setLastName] = useState('');
@@ -15,10 +15,10 @@ const Login = ({setToken}) => {
     let [password, setPassword] = useState('');
     let [con_password, setConfirmPassword] = useState('');
     let [role, setRole] = useState('');
-
+ 
     let [log_email, setLogEmail] = useState('');
     let [log_password, setLogPassword] = useState('');
-
+ 
     let handleFirstName = (e) => { setFirstName(e.target.value) }
     let handleLasttName = (e) => { setLastName(e.target.value) }
     let handleNumber = (e) => { setPhone_Number(e.target.value) }
@@ -27,21 +27,20 @@ const Login = ({setToken}) => {
     let handlePassword = (e) => { setPassword(e.target.value) }
     let handleConPassword = (e) => { setConfirmPassword(e.target.value) }
     let handleRole =  (e) => { setRole(e.target.value) }
-
+ 
     let handleLogEmail = (e) => { setLogEmail(e.target.value) }
     let handleLogPassword = (e) => { setLogPassword(e.target.value) }
-
+ 
     const authService = new AuthService();
     let navigate = useNavigate();
     let handleSubmit = (e) => {
         e.preventDefault();
         if (password !== con_password) {
             alert("Passwords don't match");
-        } 
+        }
         else {
             let user = {firstName:firstName, lastName: lastName, email: email, password: password, dob: dob, phoneNumber: phoneNumber, role: role}
             if (role === "ROLE_LANDLORD"){
-                alert(user.phoneNumber);
                 authService.addLandlord(user).then(()=>{
                     alert("Signed up as new landlord!");
                     window.location.reload(false);
@@ -62,27 +61,23 @@ const Login = ({setToken}) => {
     let handleSubmit2 = (e) => {
         e.preventDefault();
         let user = {email:log_email, password:log_password}
-        authService.loginUser(user).then((data)=>{
-            if(data && data.accessToken){
-
-            
+        authService.loginUser(user).then(()=>{
             alert("login");
             navigate("/tenant_dashboard")
-            }
         }, ()=>{
             alert("failed!");
         });
-
+ 
     }
         // let userlogin = { email: email, password: password}
         // const token = await AuthService.loginUser(userlogin)
         // setToken(token);
-        // navigate("/tenant_dashboard"); 
-    
+        // navigate("/tenant_dashboard");
+   
     useEffect(() => {
         loginElements();
     }, []);
-
+ 
     return(
         <div class="forms">
             <div class="form-wrapper is-active">
@@ -90,7 +85,7 @@ const Login = ({setToken}) => {
                     LOGIN
                     <span class="underline"></span>
                 </button>
-
+ 
                 <form onSubmit={handleSubmit2} class="form form-login">
                     <section class="single-column">
                         <img class="med-logo" src={rrlogo} alt = ""/>
@@ -107,13 +102,13 @@ const Login = ({setToken}) => {
                     </section>
                 </form>
             </div>
-
+ 
             <div class="form-wrapper">
                 <button type="button" class="switcher switcher-signup">
                     SignUp
                     <span class="underline"></span>
                 </button>
-
+ 
                 <form onSubmit={handleSubmit}  class="form form-signup">
                     <section class="single-column">
                         <img class="med-logo" src={rrlogo} alt = ""/>
@@ -137,7 +132,7 @@ const Login = ({setToken}) => {
                         <label class="label" for="signup-phone">Phone Number:</label>
                     </div>
                     <div class="input-form"> {/* Data of Birth */}
-                        <input onChange = {handleDOB} class="input" value={dob} id="signup-dob" type="text" required title="Date Format: MM/DD/YYYY"/>
+                        <input onChange = {handleDOB} class="input" value={dob} id="signup-dob" type="text" required title="Date Format: YYYY-MM-DD"/>
                         <label class="label" for="signup-dob">Date of Birth:</label>
                     </div>
                     <div class="input-form"> {/* Email */}
@@ -163,5 +158,5 @@ const Login = ({setToken}) => {
 Login.propTypes = {
     setToken: PropTypes.func.isRequired
 }
-
+ 
 export default Login;
