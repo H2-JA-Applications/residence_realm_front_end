@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import rrlogo from "../../images/rrlogo.png"
 import { Link } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -8,8 +8,20 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-import { landlord_properties } from './stuff';
+import  fetchLandlordProperties  from './stuff';
 const Track_Late = () => {
+    const [properties, setProperties] = useState(null);
+
+    useEffect(() => {
+        fetchLandlordProperties()
+            .then(fetchedProperties => {
+                setProperties(fetchedProperties);
+            })
+            .catch(error => {
+                // Handle the error here
+            });
+    }, []);
+
     return(
         <body>
             <Box class="navboard" sx={{ flexGrow: 1}}>
@@ -38,12 +50,12 @@ const Track_Late = () => {
                         </tr>
                     </thead>
                     <tbody>
-                            {landlord_properties.map((property, index) => (
+                            {properties.map(property => (
                                 <tr
                                     class="row"
-                                    key={index}
+                                    key={property.id}
                                 >
-                                    <td>{property.payment_ID}</td>
+                                    <td>{property.id}</td>
                                     <td>{property.rent}</td>
                                     <td>{property.dueDate}</td>
                                     <td>{property.dueDate}</td>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import rrlogo from "../../images/rrlogo.png"
 import { Link } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -8,9 +8,19 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-import { landlord_properties } from '../landlord/stuff';
+import  fetchLandlordProperties  from '../landlord/stuff';
 import { useNavigate } from 'react-router-dom';
 const Land_Dashboard = () => {
+        const [properties, setProperties] = useState(null);
+        useEffect(() => {
+            fetchLandlordProperties()
+            .then(fetchProperties => {
+                setProperties(fetchProperties);
+            })
+            .catch(error =>{
+                console(error);
+            });
+        }, []);
 
     let handleLogout = (e) => {
         e.preventDefault();
@@ -35,7 +45,7 @@ const Land_Dashboard = () => {
                     </Toolbar>
                 </AppBar>
             </Box>
-            <div class="container">
+            
             <div class="dashboard">
                 <section class="single-column">
                 <table>
@@ -50,7 +60,7 @@ const Land_Dashboard = () => {
                         </tr>
                     </thead>
                     <tbody>
-                    {landlord_properties.map(property => (
+                    {properties.map(property => (
                     <tr className="row" key={property.id}>
                             <td>{property.address}</td>
                             <td>{property.rent}</td>
@@ -73,7 +83,7 @@ const Land_Dashboard = () => {
                     <Link to="/landlord_dashboard/add_rentals"><button type = "button" class="dashboard-button">Add Rental</button></Link>
                 </section>
             </div>
-            </div>
+
         </body>
   );
 }

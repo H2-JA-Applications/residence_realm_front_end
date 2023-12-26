@@ -10,17 +10,8 @@ import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import fetchLandlordProperties from '../landlord/stuff';
 const Received_Pay = () => {
-    const [properties, setProperties] = useState(null);
+   
 
-    useEffect(() => {
-        fetchLandlordProperties()
-            .then(fetchedProperties => {
-                setProperties(fetchedProperties);
-            })
-            .catch(error => {
-                // Handle the error here
-            });
-    }, []);
     return(
         <body>
             <Box class="navboard" sx={{ flexGrow: 1}}>
@@ -48,21 +39,7 @@ const Received_Pay = () => {
                             <th>Tenant Email</th>
                         </tr>
                     </thead>
-                    <tbody>
-                            {properties.map((property, index) => (
-                                <tr
-                                    class="row"
-                                    key={index}
-                                >
-                                    <td>{property.id}</td>
-                                    <td>{property.rent}</td>
-                                    <td>{property.dueDate}</td>
-                                    <td>{property.dueDate}</td>
-                                    <td>{property.dueDate}</td>
-                                    
-                                </tr>
-                            ))}
-                        </tbody>
+                   
                 </table>
                 <section class="double-column">
                     <Link to="/landlord_dashboard/track_late"><button type = "button" class="dashboard-button">Track Late Payment</button></Link>

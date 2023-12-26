@@ -14,7 +14,7 @@ const Rental = () => {
     
     const [date] = useState(new Date());
     const [selectedRow, setSelectedRow] = useState(null);
-    const [payments, setPayments] = useState(null);
+    const [payments, setPayments] = useState([]);
 
     useEffect(() => {
         fetchPaymentsData()
@@ -23,6 +23,7 @@ const Rental = () => {
             })
             .catch(error => {
                 // Handle the error here
+                console.log(error);
             });
     }, []);
     
