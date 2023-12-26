@@ -24,6 +24,7 @@ const Manage_Pay = () => {
                     </Toolbar>
                 </AppBar>
             </Box>
+            <div class="container">
             <div class="panel">
                 <section class="single-column">
                 <table>
@@ -54,6 +55,7 @@ const Manage_Pay = () => {
                 </table>
                     <Link to="/landlord_dashboard"><button type = "button" class="dashboard-button">Back To Dashboard</button></Link>
                 </section>
+            </div>
             </div>
         </body>
   );

@@ -35,6 +35,7 @@ const Rental = () => {
                     </Toolbar>
                 </AppBar>
             </Box>
+            <div class="container">
             <div class="panel">
                 <section class="single-column">
                 <table>
@@ -66,11 +67,12 @@ const Rental = () => {
                         <label class="label" for="address">Address</label>
                     </div>
                     <p class="dashboard-label">Rent: {selectedRow}</p>
-                    <p class="dashboard-label">Due Date: <span></span> {date.toLocaleDateString()}</p>
+                    <p class="dashboard-label">Due Date: {date.toLocaleDateString()}</p>
                     <button type = "button" class="dashboard-button">Search Address</button>
                     <button type = "button" class="dashboard-button">Pick Property</button>
                     <Link to="/tenant_dashboard"><button type = "button" class="dashboard-button">Back To Main Menu</button></Link>
                 </section>
+            </div>
             </div>
         </body>
   );

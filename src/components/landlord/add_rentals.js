@@ -51,6 +51,7 @@ const Add_Rental = () => {
                     </Toolbar>
                 </AppBar>
             </Box>
+            <div class="container">
             <div class="panel">
             <form onSubmit={handleSubmit}>
                 <section class="single-column">
@@ -82,6 +83,7 @@ const Add_Rental = () => {
                     <Link to="/landlord_dashboard"><button type = "button" class="dashboard-button">Back To Dashboard</button></Link>
                 </section>
                 </form>
+            </div>
             </div>
         </body>
     );
