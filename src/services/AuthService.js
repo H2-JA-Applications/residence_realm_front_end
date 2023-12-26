@@ -36,13 +36,6 @@ export default class AuthService{
             console.log(JSON.stringify(response.data.token))
             return response.data;
         });
-        // fetch(loginUrl,{
-        //     method: 'POST',
-        //     header: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(user)
-        // }).then(data => data.json())
     }
 
 }

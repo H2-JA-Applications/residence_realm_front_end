@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
+import { landlord_properties } from './stuff';
 const Track_Late = () => {
     return(
         <body>
@@ -15,7 +16,7 @@ const Track_Late = () => {
                 <AppBar position="static">
                     <Toolbar class="navbar">
                         <Avatar class="small-logo" alt="Residence Realm Logo" src={rrlogo}/>
-                        <Typography class="title">Land Dashboard</Typography>
+                        <Typography class="title">Track Late Payments</Typography>
                         <Link to="/">
                         <IconButton aria-label="delete" size="large" color='secondary'>
                             <LogoutIcon fontSize="inherit"/>
@@ -25,31 +26,32 @@ const Track_Late = () => {
             </Box>
             <div class="panel">
                 <section class="single-column">
-                <section class="double-column">
-                    <div class="input-form">
-                        <input class="input" id="l_address" type="text" required name="l_address"/>
-                        <label class="label" for="l_address">Address</label>
-                    </div>
-                    <div class="input-form">
-                        <input class="input" id="rent_ammount" type="text" required name="rent_ammount"/>
-                        <label class="label" for="rent_ammount">Rent</label>
-                    </div>
-                    <div class="input-form">
-                        <input class="input" id="due_date" type="text" required name="due_date"/>
-                        <label class="label" for="due_date">Due Date</label>
-                    </div>
-                    <select name="role" id="property_type" selectedIndex="-1" class="input2">
-                        <option value="">Select Property Type</option>
-                        <option value="apartment">Apartment</option>
-                        <option value="condo">Condo</option>
-                        <option value="house">House</option>
-                    </select>
-                </section>
-                    <div class="input-form">
-                            <input class="input" id="apt_num" type="text" required name="apt_num"/>
-                            <label class="label" for="apt_num">Apt Number</label>
-                    </div>
-                    <button type = "button" class="dashboard-button">Add Property</button>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Property ID</th>
+                            <th>Rent</th>
+                            <th>Payment Date</th>
+                            <th>Due Date</th>
+                            <th>Tenant Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            {landlord_properties.map((property, index) => (
+                                <tr
+                                    class="row"
+                                    key={index}
+                                >
+                                    <td>{property.payment_ID}</td>
+                                    <td>{property.rent}</td>
+                                    <td>{property.dueDate}</td>
+                                    <td>{property.dueDate}</td>
+                                    <td>{property.dueDate}</td>
+                                    
+                                </tr>
+                            ))}
+                        </tbody>
+                </table>
                     <Link to="/landlord_dashboard"><button type = "button" class="dashboard-button">Back To Dashboard</button></Link>
                 </section>
             </div>
