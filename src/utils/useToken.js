@@ -7,6 +7,13 @@ export const axiosInterceptor = () => {
     return config;
   });
 
+  axios.interceptors.response.use(response => {
+    if(response.data.accessToken){
+      localStorage.setItem("token", response.data.accessToken);
+    }
+  });
+  
+
   axios.interceptors.response.use(
     response => response,
     error => {
