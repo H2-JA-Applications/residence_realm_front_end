@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import rrlogo from "../../images/rrlogo.png"
 import { Link } from 'react-router-dom';
-import { properties } from './properties';
+import { Payments } from './properties';
 import LogoutIcon from '@mui/icons-material/Logout';
 import IconButton from '@mui/material/IconButton';
 import AppBar from '@mui/material/AppBar';
@@ -14,6 +14,7 @@ const Rental = () => {
     
     const [date] = useState(new Date());
     const [selectedRow, setSelectedRow] = useState(null);
+    const payments = useState(Payments);
 
     let handleRowClick = (clickedRowId) => {
         setSelectedRow((prevSelectedRow) =>
@@ -37,30 +38,8 @@ const Rental = () => {
             </Box>
             <div class="panel">
                 <section class="single-column">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Address</th>
-                            <th>Apartment #</th>
-                            <th>Property Type</th>
-                            <th>Rent Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                            {properties.map((property, index) => (
-                                <tr
-                                    class="row"
-                                    key={index}
-                                    onClick={() => handleRowClick(index+1)}
-                                >
-                                    <td>{property.address}</td>
-                                    <td>{property.apartmentNum}</td>
-                                    <td>{property.propertyType}</td>
-                                    <td>{property.rent}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                </table>
+               <Payments payments={payments} onRowClick={handleRowClick} />
+               
                     <div class="input-form">
                         <input class="input" id="address" type="text" required name="address"/>
                         <label class="label" for="address">Address</label>
