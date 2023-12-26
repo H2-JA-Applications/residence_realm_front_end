@@ -35,6 +35,8 @@ export default class AuthService{
             }
             console.log(JSON.stringify(response.data.accessToken))
             return response.data;
+        }).catch((error) => {
+            console.log("sigin error" );
         });
     }
 
