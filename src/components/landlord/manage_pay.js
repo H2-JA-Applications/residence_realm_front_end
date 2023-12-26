@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import rrlogo from "../../images/rrlogo.png"
 import { Link } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -8,8 +8,25 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
+<<<<<<< HEAD
 import { useLandlordProperties } from '../landlord/stuff';
+=======
+import  fetchLandlordProperties  from './stuff';
+>>>>>>> ae98a274fb2e172fbb829e45614ac596bec793cc
 const Manage_Pay = () => {
+
+    const [properties, setProperties] = useState(null);
+
+    useEffect(() => {
+        fetchLandlordProperties()
+            .then(fetchedProperties => {
+                setProperties(fetchedProperties);
+            })
+            .catch(error => {
+                // Handle the error here
+            });
+    }, []);
+
     return(
         <body>
             <Box class="navboard" sx={{ flexGrow: 1}}>
@@ -38,7 +55,11 @@ const Manage_Pay = () => {
                         </tr>
                     </thead>
                     <tbody>
+<<<<<<< HEAD
                             {useLandlordProperties.map((property, index) => (
+=======
+                            {properties.map((property, index) => (
+>>>>>>> ae98a274fb2e172fbb829e45614ac596bec793cc
                                 <tr
                                     class="row"
                                     key={index}

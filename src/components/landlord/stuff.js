@@ -1,18 +1,13 @@
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export const useLandlordProperties = () => {
-  const [landlordProperties, setLandlordProperties] = useState([]);
-
-  useEffect(() => {
-    axios.get('http://localhost:8080/api/properties/landlord/properties')
-      .then(response => {
-        setLandlordProperties(response.data);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-  }, []);
-
-  return landlordProperties;
+// Function to fetch landlord properties data and return JSON
+function fetchLandlordProperties() {
+    return axios.get('http://localhost:8080/api/properties/landlord/properties')
+        .then(response => response.data) // Extracting JSON from response
+        .catch(error => {
+            console.error('Error fetching landlord properties:', error);
+            throw error; // Re-throw the error for the caller to handle
+        });
 }
+
+export default fetchLandlordProperties;
