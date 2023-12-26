@@ -39,7 +39,25 @@ const Received_Pay = () => {
                             <th>Tenant Email</th>
                         </tr>
                     </thead>
+<<<<<<< HEAD
                    
+=======
+                    <tbody>
+                            {fetchLandlordProperties.map((property, index) => (
+                                <tr
+                                    class="row"
+                                    key={index}
+                                >
+                                    <td>{property.id}</td>
+                                    <td>{property.rent}</td>
+                                    <td>{property.dueDate}</td>
+                                    <td>{property.dueDate}</td>
+                                    <td>{property.dueDate}</td>
+                                    
+                                </tr>
+                            ))}
+                        </tbody>
+>>>>>>> e6fc8274454742eb3f3ccb907172f3f7a0cb95b9
                 </table>
                 <section class="double-column">
                     <Link to="/landlord_dashboard/track_late"><button type = "button" class="dashboard-button">Track Late Payment</button></Link>

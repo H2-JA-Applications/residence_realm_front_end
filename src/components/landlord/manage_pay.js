@@ -51,7 +51,7 @@ const Manage_Pay = () => {
                         </tr>
                     </thead>
                     <tbody>
-                            {properties.map((property, index) => (
+                            {fetchLandlordProperties.map((property, index) => (
                                 <tr
                                     class="row"
                                     key={index}
