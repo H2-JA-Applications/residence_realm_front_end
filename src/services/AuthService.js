@@ -35,22 +35,7 @@ class AuthService{
             console.log(JSON.stringify(response.data.token))
             return response.data;
         });
-        // fetch(loginUrl,{
-        //     method: 'POST',
-        //     header: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(user)
-        // }).then(data => data.json())
     }
 
 }
 export default new AuthService;
-// const requestHTTPOptions = {
-//     method: 'POST',
-//     headers: {
-//         'Content-Type': 'application/json',
-//         'Authorization': 'Bearer {AuthService.token}'
-//     },
-//     body: JSON.stringify(user)
-// }

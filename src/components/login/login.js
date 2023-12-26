@@ -69,7 +69,6 @@ const Login = ({setToken}) => {
         });
 
     }
-
         // let userlogin = { email: email, password: password}
         // const token = await AuthService.loginUser(userlogin)
         // setToken(token);
