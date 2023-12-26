@@ -15,18 +15,30 @@ const Payments = () => {
   }, []);
 
   return (
-    <div>
-      {payments.map(payment => (
-        <div key={payment.id}>
-          <p>Tenant ID: {payment.tenantId}</p>
-          <p>Property ID: {payment.propertyId}</p>
-          <p>Amount: {payment.amount}</p>
-          <p>Timestamp: {payment.timestamp}</p>
-          <p>Date Paid: {payment.datePaid}</p>
-          <p>Payment Status: {payment.paymentStatus}</p>
-        </div>
-      ))}
-    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Tenant ID</th>
+          <th>Property ID</th>
+          <th>Amount</th>
+          <th>Timestamp</th>
+          <th>Date Paid</th>
+          <th>Payment Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {payments.map(payment => (
+          <tr key={payment.id}>
+            <td>{payment.tenantId}</td>
+            <td>{payment.propertyId}</td>
+            <td>{payment.amount}</td>
+            <td>{payment.timestamp}</td>
+            <td>{payment.datePaid}</td>
+            <td>{payment.paymentStatus}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 };
 
