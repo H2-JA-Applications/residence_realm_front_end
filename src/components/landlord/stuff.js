@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-const LandDashboard = () => {
+
+export const useLandlordProperties = () => {
   const [landlordProperties, setLandlordProperties] = useState([]);
 
   useEffect(() => {
@@ -9,6 +9,6 @@ const LandDashboard = () => {
           .then(data => setLandlordProperties(data))
           .catch(error => console.error('Error:', error));
   }, []);
-  
-}
 
+  return landlordProperties;
+}
