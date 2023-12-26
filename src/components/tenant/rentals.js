@@ -14,7 +14,7 @@ const Rental = () => {
     
     const [date] = useState(new Date());
     const [selectedRow, setSelectedRow] = useState(null);
-    const payments = useState(Payments);
+    
 
     let handleRowClick = (clickedRowId) => {
         setSelectedRow((prevSelectedRow) =>
@@ -38,7 +38,7 @@ const Rental = () => {
             </Box>
             <div class="panel">
                 <section class="single-column">
-               <Payments payments={payments} onRowClick={handleRowClick} />
+               <Payments/>
                
                     <div class="input-form">
                         <input class="input" id="address" type="text" required name="address"/>
