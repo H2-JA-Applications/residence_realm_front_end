@@ -62,9 +62,13 @@ const Login = ({setToken}) => {
     let handleSubmit2 = (e) => {
         e.preventDefault();
         let user = {email:log_email, password:log_password}
-        authService.loginUser(user).then(()=>{
+        authService.loginUser(user).then((data)=>{
+            if(data && data.accessToken){
+
+            
             alert("login");
             navigate("/tenant_dashboard")
+            }
         }, ()=>{
             alert("failed!");
         });
