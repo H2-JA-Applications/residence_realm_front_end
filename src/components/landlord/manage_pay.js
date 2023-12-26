@@ -8,11 +8,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-<<<<<<< HEAD
-import { useLandlordProperties } from '../landlord/stuff';
-=======
 import  fetchLandlordProperties  from './stuff';
->>>>>>> ae98a274fb2e172fbb829e45614ac596bec793cc
 const Manage_Pay = () => {
 
     const [properties, setProperties] = useState(null);
@@ -55,11 +51,7 @@ const Manage_Pay = () => {
                         </tr>
                     </thead>
                     <tbody>
-<<<<<<< HEAD
-                            {useLandlordProperties.map((property, index) => (
-=======
-                            {properties.map((property, index) => (
->>>>>>> ae98a274fb2e172fbb829e45614ac596bec793cc
+                            {fetchLandlordProperties.map((property, index) => (
                                 <tr
                                     class="row"
                                     key={index}
