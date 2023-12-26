@@ -9,7 +9,18 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import { landlord_properties } from '../landlord/stuff';
+import { useNavigate } from 'react-router-dom';
 const Land_Dashboard = () => {
+
+    let handleLogout = (e) => {
+        e.preventDefault();
+
+        console.log("LOGGING OUT ......")
+        localStorage.removeItem("token");
+        window.location.href = "/"
+        
+    }
+
     return(
         <body>
             <Box class="navboard" sx={{ flexGrow: 1}}>
@@ -17,8 +28,8 @@ const Land_Dashboard = () => {
                     <Toolbar class="navbar">
                         <Avatar class="small-logo" alt="Residence Realm Logo" src={rrlogo}/>
                         <Typography class="title">Land Dashboard</Typography>
-                        <Link to="/">
-                        <IconButton aria-label="delete" size="large" color='secondary'>
+                        <Link  onClick={handleLogout}>
+                        <IconButton aria-label="delete" size="large" color='secondary' >
                             <LogoutIcon fontSize="inherit"/>
                         </IconButton></Link>
                     </Toolbar>

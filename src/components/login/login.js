@@ -41,6 +41,7 @@ const Login = ({setToken}) => {
         else {
             let user = {firstName:firstName, lastName: lastName, email: email, password: password, dob: dob, phoneNumber: phoneNumber, role: role}
             if (role === "ROLE_LANDLORD"){
+                alert(user.phoneNumber);
                 authService.addLandlord(user).then(()=>{
                     alert("Signed up as new landlord!");
                     window.location.reload(false);
@@ -61,9 +62,13 @@ const Login = ({setToken}) => {
     let handleSubmit2 = (e) => {
         e.preventDefault();
         let user = {email:log_email, password:log_password}
-        authService.loginUser(user).then(()=>{
+        authService.loginUser(user).then((data)=>{
+            if(data && data.accessToken){
+
+            
             alert("login");
             navigate("/tenant_dashboard")
+            }
         }, ()=>{
             alert("failed!");
         });

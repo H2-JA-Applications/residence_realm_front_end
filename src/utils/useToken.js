@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const axiosInterceptor = () => {
   axios.interceptors.request.use(config => {
-    const token = localStorage.getItem("accessToken");
+    const token = localStorage.getItem("token");
     config.headers.Authorization = token ? `Bearer ${token}` : ' ';
     return config;
   });
@@ -11,17 +11,17 @@ export const axiosInterceptor = () => {
     if(response.data.accessToken){
       localStorage.setItem("token", response.data.accessToken);
     }
-  });
-  
 
-  axios.interceptors.response.use(
-    response => response,
-    error => {
-      if (error.response && error.response.status === 401) {
-        localStorage.clear();
-        window.location.href = "/";
-      }
-      return Promise.reject(error);
+    return response;
+  }, error =>{
+    if(error.response && error.response.status === 403){
+      
+      localStorage.clear()
+      window.location.href = "/";
+      
     }
+    return Promise.reject(error);
+  }
   );
+  
 }

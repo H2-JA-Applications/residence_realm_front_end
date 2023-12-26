@@ -31,10 +31,17 @@ export default class AuthService{
         return axios.post(loginUrl, user).then(response => {
             // Check if the response has a token and save it
             if (response.data && response.data.accessToken) {
-                this.saveToken(response.data.token);
+                this.saveToken(response.data.accessToken);
+            }
+            else{
+                console.log("Login failed no token in response ");
+                throw Error("No Data in response");
             }
             console.log(JSON.stringify(response.data.accessToken))
             return response.data;
+        }).catch((error) => {
+            console.log(error);
+            throw error;
         });
     }
 
