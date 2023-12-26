@@ -41,6 +41,7 @@ const Login = ({setToken}) => {
         else {
             let user = {firstName:firstName, lastName: lastName, email: email, password: password, dob: dob, phoneNumber: phoneNumber, role: role}
             if (role === "ROLE_LANDLORD"){
+                alert(user.phoneNumber);
                 authService.addLandlord(user).then(()=>{
                     alert("Signed up as new landlord!");
                     window.location.reload(false);
