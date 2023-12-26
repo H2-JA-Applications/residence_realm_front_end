@@ -35,6 +35,7 @@ const Land_Dashboard = () => {
                     </Toolbar>
                 </AppBar>
             </Box>
+            <div class="container">
             <div class="dashboard">
                 <section class="single-column">
                 <table>
@@ -72,7 +73,7 @@ const Land_Dashboard = () => {
                     <Link to="/landlord_dashboard/add_rentals"><button type = "button" class="dashboard-button">Add Rental</button></Link>
                 </section>
             </div>
-
+            </div>
         </body>
   );
 }

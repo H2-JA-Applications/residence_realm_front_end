@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {  useNavigate } from 'react-router-dom';
+import { loginElements } from '../../utils/login_script';
 import rrlogo from "../../images/rrlogo.png"
 import { Link } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -53,6 +54,9 @@ const Payment = () => {
         });
 
     }
+    useEffect(() => {
+        loginElements();
+    }, []);
 
     return(
         <body>
@@ -68,6 +72,7 @@ const Payment = () => {
                     </Toolbar>
                 </AppBar>
             </Box>
+            <div class="container">
             <div class="forms">
             <br/>
             <div class="form-wrapper is-active">
@@ -122,6 +127,7 @@ const Payment = () => {
                 </form>
             </div>
         </div>
+        </div>
 
             
         </body>
@@ -129,37 +135,3 @@ const Payment = () => {
 }
 
 export default Payment;
-
-/* <div class="panel">
-                <section class="single-column">
-                    <select name="role" id="role" selectedIndex="-1" class="input2">
-                        <option value="">Select a Payment Type</option>
-                        <option value="credit">Credit</option>
-                        <option value="debit">Debit</option>
-                        <option value="ach">ACH</option>
-                        <option value="echeck">ECheck</option>
-                    </select>
-                <section class="double-column">
-                    <div class="input-form">
-                        <input class="input" id="accounting/cardnumber" type="password" required name="accounting/cardnumber"/>
-                        <label class="label" for="accounting/cardnumber">Account/Card Number</label>
-                    </div>
-                    <div class="input-form">
-                        <input class="input" id="csv/routingnumber" type="text" required name="csv/routingnumber"/>
-                        <label class="label" for="csv/routingnumber">CSV/Routing Number</label>
-                    </div>
-                    <div class="input-form">
-                        <input class="input" id="expire" type="text" required name="expire"/>
-                        <label class="label" for="expire">Expiration Date</label>
-                    </div>
-                    <select name="role" id="role" selectedIndex="-1" class="input2">
-                        <option value="">Select Account Type</option>
-                        <option value="checking">Checking</option>
-                        <option value="savings">Savings</option>
-                    </select>
-                </section>
-                
-                    <button type = "button" class="dashboard-button">Make Payment</button>
-                    <Link to="/tenant_dashboard"><button type = "button" class="dashboard-button">Back To Dashboard</button></Link>
-                </section>
-            </div> */

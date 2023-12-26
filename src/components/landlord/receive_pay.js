@@ -35,6 +35,7 @@ const Received_Pay = () => {
                     </Toolbar>
                 </AppBar>
             </Box>
+            <div class="container">
             <div class="panel">
                 <section class="single-column">
                 <table>
@@ -68,6 +69,7 @@ const Received_Pay = () => {
                     <Link to="/landlord_dashboard"><button type = "button" class="dashboard-button">Back To Dashboard</button></Link>
                 </section>
                 </section>
+            </div>
             </div>
         </body>
   );

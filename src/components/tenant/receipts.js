@@ -26,6 +26,7 @@ const Receipts = () => {
                     </Toolbar>
                 </AppBar>
             </Box>
+            <div class="container">
             <div class = "panel">
                 <p class="upcoming">Confirmation: </p>
                 <section class="single-column">
@@ -35,6 +36,7 @@ const Receipts = () => {
                     <p class="dashboard-label"> Date Paid: {date.toLocaleDateString()}</p>
                     <Link to="/tenant_dashboard"><button type = "button" class="dashboard-button"> Back To Main Menu</button></Link>
                 </section>
+            </div>
             </div>
     </body>
   );

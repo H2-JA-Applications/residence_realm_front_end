@@ -18,7 +18,9 @@ export default class AuthService{
         })
     }
     addLandlord(user){
+        // console.log(response.data);
         return axios.post(addUser, user).then(response => {
+            console.log(user);
             // Check if the response has a token and save it
             if (response.data && response.data.accessToken) {
                 localStorage.clear();

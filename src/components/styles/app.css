@@ -19,14 +19,13 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     overflow: hidden;
 
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 18px;
 
-    background-color: var(--green);
+    background-color: var(--light-grey);
 
 }
 @media (max-width: 768px) {
@@ -76,12 +75,12 @@ body {
 }
 
 .form-wrapper.is-active .switcher-login {
-    color: var(--white);
+    color: var(--green);
     text-shadow: 0px 0px 20px var(--white);
 }
 
 .form-wrapper.is-active .switcher-signup {
-    color: var(--white);
+    color: var(--green);
     text-shadow: 0px 0px 20px var(--white);
 }
 
@@ -170,6 +169,7 @@ body {
     display: block;
     position: relative;
     margin-inline: auto;
+    margin-top: 30px;
     padding: 0;
     cursor: pointer;
     border: none;
@@ -180,7 +180,7 @@ body {
     font-size: 30px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: var(--light-grey);
+    color: var(--black);
     background-color: transparent;
 
     transform: translateX(0);
@@ -250,7 +250,7 @@ body {
     padding: 1rem;
     background-color: var(--white);
     border: 1.5px solid #000000;
-    border-radius: 10px;
+    border-radius: 5px;
 
     color: var(--black); 
     box-shadow: 0 0 15px rgb(0 0 0 / 25%);
@@ -366,9 +366,9 @@ body {
 }
 
 .panel {
+    height: inherit;
+    width: inherit;
     position: relative;
-    top: 2%;
-    width: 50vw;
     padding: 50px;
     display: block;
     flex-direction: column;
@@ -403,6 +403,7 @@ body {
 }
 
 .dashboard {
+    height: inherit;
     padding: 50px;
     display: flex;
     flex-direction: column;
@@ -417,16 +418,25 @@ body {
     backdrop-filter: blur(20px);
 }
 
+.container {
+    position: sticky;
+    display: block;
+    top: 10%;
+    height: 90vh;
+    width: 60vw;
+}
+
 .navboard {
-    position: absolute;
+    position: fixed;
     display: block;
     top: 0;
     width: 100%;
+    height: 10vh;
     align-items: center;
+    z-index: 1000;
 }
 .navbar {
-    min-height: 100px;
-    background-color: var(--light-grey);
+    background-color: var(--green);
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -441,6 +451,7 @@ body {
     padding: 5px;
     margin: 5px;
 
+    background-color: var(--white);
     border-radius: 25%;
     box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
 }
@@ -450,16 +461,17 @@ body {
     font-weight: bold;
     letter-spacing: 0px;
     word-spacing: 0px;
-    color: var(--black);
+    color: var(--white);
 }
 
 .heading {
-    font-size: 24px;
+    font-size: 48px;;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
     word-spacing: 0px;
-    color: var(--white);
+    color: var(--black);
+    margin: 10px;
 }
 
 .upcoming {
@@ -469,20 +481,22 @@ body {
     word-spacing: 0px;
     text-shadow: 0px 0px 3px grey;
     color: red;
+    margin: 10px;
 }
 
 .dashboard-button {
     width: 200px;
     height: 50px;
-    background-color: var(--light-grey);
-    border-radius: 5px;
+    background-color: var(--blue);
+    border-radius: 1px;
     font-size: 18px;
     font-weight: bold;
     text-transform: uppercase;
     box-shadow: 0 0 25px rgb(0 0 0 / 25%);
     cursor: pointer;
     outline: none;
-
+    color: var(--white);
+border: 0px;
     transition: transform 0.1s ease-in-out;
 }
 
@@ -492,10 +506,11 @@ body {
 
 /* table information */
 table {
-    width: 700px;
+    width: 800px;
     display: block;
     background-color: var(--blue);
     border-collapse: collapse;
+    padding: 20px;
 }
 
 tr {
@@ -534,7 +549,7 @@ tbody {
     background-color: var(--light-grey);
     justify-content: center;
     border-radius: 5px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     text-transform: uppercase;
     box-shadow: 0 0 25px rgb(0 0 0 / 25%);

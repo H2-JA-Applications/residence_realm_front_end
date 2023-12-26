@@ -26,6 +26,7 @@ const PaymentDetails = () => {
                     </Toolbar>
                 </AppBar>
             </Box>
+            <div class="container">
             <div class = "panel">
                 <section class="single-column">
                     <section class="double-column">
@@ -39,6 +40,7 @@ const PaymentDetails = () => {
                     <button type = "button" class="dashboard-button">Payment History</button>
                     <Link to="/tenant_dashboard"><button type = "button" class="dashboard-button">Back To Main Menu</button></Link>
                 </section>
+            </div>
             </div>
     </body>
   );
