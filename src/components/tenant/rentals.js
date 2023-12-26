@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import rrlogo from "../../images/rrlogo.png"
 import { Link } from 'react-router-dom';
-import { properties } from './properties';
+import fetchPaymentsData  from './properties';
 import LogoutIcon from '@mui/icons-material/Logout';
 import IconButton from '@mui/material/IconButton';
 import AppBar from '@mui/material/AppBar';
@@ -14,6 +14,18 @@ const Rental = () => {
     
     const [date] = useState(new Date());
     const [selectedRow, setSelectedRow] = useState(null);
+    const [payments, setPayments] = useState(null);
+
+    useEffect(() => {
+        fetchPaymentsData()
+            .then(fetchedData => {
+                setPayments(fetchedData);
+            })
+            .catch(error => {
+                // Handle the error here
+            });
+    }, []);
+    
 
     let handleRowClick = (clickedRowId) => {
         setSelectedRow((prevSelectedRow) =>
@@ -39,29 +51,31 @@ const Rental = () => {
             <div class="panel">
                 <section class="single-column">
                 <table>
-                    <thead>
-                        <tr>
-                            <th>Address</th>
-                            <th>Apartment #</th>
-                            <th>Property Type</th>
-                            <th>Rent Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                            {properties.map((property, index) => (
-                                <tr
-                                    class="row"
-                                    key={index}
-                                    onClick={() => handleRowClick(index+1)}
-                                >
-                                    <td>{property.address}</td>
-                                    <td>{property.apartmentNum}</td>
-                                    <td>{property.propertyType}</td>
-                                    <td>{property.rent}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                </table>
+      <thead>
+        <tr>
+          <th>Tenant ID</th>
+          <th>Property ID</th>
+          <th>Amount</th>
+          <th>Timestamp</th>
+          <th>Date Paid</th>
+          <th>Payment Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {payments.map(payment => (
+          <tr key={payment.id}>
+            <td>{payment.tenantId}</td>
+            <td>{payment.propertyId}</td>
+            <td>{payment.amount}</td>
+            <td>{payment.timestamp}</td>
+            <td>{payment.datePaid}</td>
+            <td>{payment.paymentStatus}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+                    
+               
                     <div class="input-form">
                         <input class="input" id="address" type="text" required name="address"/>
                         <label class="label" for="address">Address</label>
