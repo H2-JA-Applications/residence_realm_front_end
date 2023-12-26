@@ -49,20 +49,18 @@ const Land_Dashboard = () => {
                         </tr>
                     </thead>
                     <tbody>
-                            {landlord_properties.map((property, index) => (
-                                <tr
-                                    class="row"
-                                    key={index}
-                                >
-                                    <td>{property.payment_ID}</td>
-                                    <td>{property.rent}</td>
-                                    <td>{property.dueDate}</td>
-                                    <td><button type = "button" class="table-button">Edit</button></td>
-                                    <td><button type = "button" class="table-button">Delete</button></td>
-                                    <td><button type = "button" class="table-button">Add</button></td>
-                                    
-                                </tr>
-                            ))}
+                    {landlord_properties.map(property => (
+                    <tr className="row" key={property.id}>
+                            <td>{property.address}</td>
+                            <td>{property.rent}</td>
+                            <td>{property.apartmentNumber}</td>
+                            <td>{property.apartmentType}</td>
+                            <td>{property.dueDate}</td>
+                            <td><button type="button" className="table-button">Edit</button></td>
+                            <td><button type="button" className="table-button">Delete</button></td>
+                            <td><button type="button" className="table-button">Add</button></td>
+                        </tr>
+                    ))}
                         </tbody>
                 </table>
 
