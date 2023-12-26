@@ -115,8 +115,8 @@ const Login = ({setToken}) => {
                         <label>Sign-up Information:</label>
                         <select onChange = {handleRole} value={role} name="role" id="role" selectedIndex="-1" required>
                             <option value="">Select a Role</option>
-                            <option value="TENANT">Tenant</option>
-                            <option value="LANDLORD">Landlord</option>
+                            <option value="ROLE_TENANT">Tenant</option>
+                            <option value="ROLE_LANDLORD">Landlord</option>
                         </select>
                     <section class="double-column">
                     <div class="input-form"> {/* First Name */}
