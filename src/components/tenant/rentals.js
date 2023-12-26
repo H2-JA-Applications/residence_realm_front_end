@@ -38,7 +38,7 @@ const Rental = () => {
             </Box>
             <div class="panel">
                 <section class="single-column">
-               <Payments/>
+                    <Payments ></Payments>
                
                     <div class="input-form">
                         <input class="input" id="address" type="text" required name="address"/>

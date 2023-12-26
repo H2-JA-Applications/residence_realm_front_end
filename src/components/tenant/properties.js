@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const Payments = () => {
   const [payments, setPayments] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8080/api/payment/landlord')
-      .then(response => response.json())
-      .then(data => setPayments(data));
+    axios.get('http://localhost:8080/api/payment/landlord')
+      .then(response => {
+        setPayments(response.data);
+      })
+      .catch(error => {
+        console.error('There was an error!', error);
+      });
   }, []);
 
   return (
@@ -23,5 +28,6 @@ const Payments = () => {
       ))}
     </div>
   );
-}
+};
+
 export default Payments;
