@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-import  fetchLandlordProperties  from './stuff';
+import { fetchLandlordProperties } from '../landlord/stuff';
 const Track_Late = () => {
     const [properties, setProperties] = useState(null);
 

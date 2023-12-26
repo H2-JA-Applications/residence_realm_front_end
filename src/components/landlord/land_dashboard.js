@@ -8,12 +8,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-<<<<<<< HEAD
-import  fetchLandlordProperties  from '../landlord/stuff';
-=======
-import { useLandlordProperties } from '../landlord/stuff';
->>>>>>> e6fc8274454742eb3f3ccb907172f3f7a0cb95b9
-import { useNavigate } from 'react-router-dom';
+import { fetchLandlordProperties } from '../landlord/stuff';
 const Land_Dashboard = () => {
         const [properties, setProperties] = useState(null);
         useEffect(() => {
@@ -64,11 +59,8 @@ const Land_Dashboard = () => {
                         </tr>
                     </thead>
                     <tbody>
-<<<<<<< HEAD
-                    {properties.map(property => (
-=======
-                    {useLandlordProperties.map(property => (
->>>>>>> e6fc8274454742eb3f3ccb907172f3f7a0cb95b9
+
+                    {fetchLandlordProperties.map(property => (
                     <tr className="row" key={property.id}>
                             <td>{property.address}</td>
                             <td>{property.rent}</td>
