@@ -1,8 +1,7 @@
 import axios from "axios";
 import { axiosInterceptor } from "../utils/useToken.js"; 
 axiosInterceptor();
-const addTenantUrl = "http://localhost:8080/api/v1/auth/register/tenant";
-const addLandLordUrl = "http://localhost:8080/api/v1/auth/register/landlord";
+const addUser = "http://localhost:8080/api/v1/auth/register";
 const loginUrl = "http://localhost:8080/api/v1/auth/login";
 
 export default class AuthService{
@@ -10,7 +9,7 @@ export default class AuthService{
         localStorage.setItem("token", token);
     }
     addTenant(user){
-        return axios.post(addTenantUrl, user).then(response => {
+        return axios.post(addUser, user).then(response => {
             // Check if the response has a token and save it
             if (response.data && response.data.token) {
                 this.saveToken(response.data.token);
@@ -19,7 +18,7 @@ export default class AuthService{
         })
     }
     addLandlord(user){
-        return axios.post(addLandLordUrl, user).then(response => {
+        return axios.post(addUser, user).then(response => {
             // Check if the response has a token and save it
             if (response.data && response.data.token) {
                 localStorage.clear();

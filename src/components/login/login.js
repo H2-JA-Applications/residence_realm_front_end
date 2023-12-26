@@ -40,7 +40,7 @@ const Login = ({setToken}) => {
         } 
         else {
             let user = {firstName:firstName, lastName: lastName, email: email, password: password, dob: dob, phoneNumber: phoneNumber, role: role}
-            if (role === "landlord"){
+            if (role === "ROLE_LANDLORD"){
                 authService.addLandlord(user).then(()=>{
                     alert("Signed up as new landlord!");
                     window.location.reload(false);
@@ -48,7 +48,7 @@ const Login = ({setToken}) => {
                     alert("Landlord creation failed!");
                 });    
             }
-            else if (role === "tenant"){
+            else if (role === "ROLE_TENANT"){
                 authService.addTenant(user).then(()=>{
                     alert("Signed up as new tenant!");
                     window.location.reload(false);
