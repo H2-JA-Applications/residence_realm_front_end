@@ -1,5 +1,5 @@
-
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import PaymentService from '../../services/PaymentService';
 import rrlogo from "../../images/rrlogo.png";
 import { Link } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -13,9 +13,20 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
+ 
 const PaymentDetails = () => {
-    const [date] = useState(new Date());
+    const [payments, setPayments] = useState([]);
+    const paymentService = new PaymentService();
+ 
+    useEffect(() => {
+        // Load payment history when the component mounts
+        paymentService.viewPayment().then(data => {
+            setPayments(data);
+        }).catch(error => {
+            console.error('Error fetching payment history:', error);
+        });
+    }, []); // Empty dependency array to run only once on mount
+ 
     return(
         <body>
             <Box class="navboard" sx={{ flexGrow: 1}}>
@@ -34,32 +45,24 @@ const PaymentDetails = () => {
             <div class = "panel">
                 <section class="single-column">
                     <div class="accordion">
-                    <Accordion sx={{ width: '600px'}}>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel1a-content"
-                        id="panel1a-header">
-                            <Typography>Payment #1</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails sx={{ backgroundColor: '#f0f0f0'}}>
-                            <Typography>Status: </Typography>
-                            <Typography>Payment Type: </Typography>
-                            <Typography>Date Paid: </Typography>
-                            <Typography>Property ID: </Typography>
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel1a-content"
-                        id="panel1a-header">
-                            <Typography>Payment #2</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails sx={{ backgroundColor: '#f0f0f0'}}>
-                            <Typography>Status: </Typography>
-                            <Typography>Payment Type: </Typography>
-                            <Typography>Date Paid: </Typography>
-                            <Typography>Property ID: </Typography>
-                        </AccordionDetails>
-                    </Accordion>
+                    {payments.map((payment, index) => (
+                                <Accordion key={index} sx={{ width: '500px' }}>
+                                    <AccordionSummary expandIcon={<ExpandMoreIcon />}
+                                        aria-controls="panel1a-content"
+                                        id={`panel1a-header-${index}`}>
+                                        <Typography>Payment #{index + 1}</Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails sx={{ backgroundColor: '#f0f0f0' }}>
+                                        <Typography>Status: {payment.paymentStatus}</Typography>
+                                        <Typography>Property: {payment.propertyId}</Typography>
+                                        <Typography>Date of Payment: 
+                                            {new Date(payment.datePaid).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })}
+                                            </Typography>
+                                        <Typography>Amount Paid: {payment.amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</Typography>
+                                        {/* Add more details as needed */}
+                                    </AccordionDetails>
+                                </Accordion>
+                            ))}
                     </div>
                     <Link to="/tenant_dashboard"><button type = "button" class="dashboard-button">Back To Main Menu</button></Link>
                 </section>
@@ -68,6 +71,5 @@ const PaymentDetails = () => {
     </body>
   );
 }
-
 
 export default PaymentDetails;
