@@ -17,7 +17,7 @@ const Received_Pay = () => {
             <Box class="navboard" sx={{ flexGrow: 1}}>
                 <AppBar position="static">
                     <Toolbar class="navbar">
-                        <Avatar class="small-logo" alt="Residence Realm Logo" src={rrlogo}/>
+                    <Link to="/landlord_dashboard"><Avatar class="small-logo" alt="Residence Realm Logo" src={rrlogo}/></Link>
                         <Typography class="title">Received Payments</Typography>
                         <Link to="/">
                         <IconButton aria-label="delete" size="large" color='secondary'>

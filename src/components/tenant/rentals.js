@@ -27,19 +27,12 @@ const Rental = () => {
             });
     }, []);
     
-
-    let handleRowClick = (clickedRowId) => {
-        setSelectedRow((prevSelectedRow) =>
-        prevSelectedRow === clickedRowId ? prevSelectedRow : clickedRowId
-      );
-    };
-
     return(
         <body>
             <Box class="navboard" sx={{ flexGrow: 1}}>
                 <AppBar position="static">
                     <Toolbar class="navbar">
-                        <Avatar class="small-logo" alt="Residence Realm Logo" src={rrlogo}/>
+                    <Link to="/tenant_dashboard"><Avatar class="small-logo" alt="Residence Realm Logo" src={rrlogo}/></Link>
                         <Typography class="title">Choose Rental</Typography>
                         <Link to="/">
                         <IconButton aria-label="delete" size="large" color='secondary'>

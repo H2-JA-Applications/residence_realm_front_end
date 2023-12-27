@@ -41,7 +41,6 @@ export default class AuthService{
                 console.log("Login failed no token in response ");
                 throw Error("No Data in response");
             }
-            console.log(JSON.stringify(response.data.accessToken))
             return response.data;
         }).catch((error) => {
             console.log(error);

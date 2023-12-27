@@ -9,6 +9,10 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const PaymentDetails = () => {
     const [date] = useState(new Date());
@@ -17,7 +21,7 @@ const PaymentDetails = () => {
             <Box class="navboard" sx={{ flexGrow: 1}}>
                 <AppBar position="static">
                     <Toolbar class="navbar">
-                        <Avatar class="small-logo" alt="Residence Realm Logo" src={rrlogo}/>
+                    <Link to="/tenant_dashboard"><Avatar class="small-logo" alt="Residence Realm Logo" src={rrlogo}/></Link>
                         <Typography class="title">Payment History</Typography>
                         <Link to="/">
                         <IconButton aria-label="delete" size="large" color='secondary'>
@@ -29,15 +33,34 @@ const PaymentDetails = () => {
             <div class="container">
             <div class = "panel">
                 <section class="single-column">
-                    <section class="double-column">
-                        <p class="dashboard-label">Rent</p>
-                        <p class="dashboard-label">Status</p>
-                        <p class="dashboard-label">Payment Type</p>
-                        <p class="dashboard-label">Date Paid: {date.toLocaleDateString()}</p>
-                        <p class="dashboard-label">Property Id</p>
-                        <p class="dashboard-label">Payment Id</p>
-                    </section>
-                    <button type = "button" class="dashboard-button">Payment History</button>
+                    <div class="accordion">
+                    <Accordion sx={{ width: '600px'}}>
+                        <AccordionSummary expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header">
+                            <Typography>Payment #1</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails sx={{ backgroundColor: '#f0f0f0'}}>
+                            <Typography>Status: </Typography>
+                            <Typography>Payment Type: </Typography>
+                            <Typography>Date Paid: </Typography>
+                            <Typography>Property ID: </Typography>
+                        </AccordionDetails>
+                    </Accordion>
+                    <Accordion>
+                        <AccordionSummary expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header">
+                            <Typography>Payment #2</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails sx={{ backgroundColor: '#f0f0f0'}}>
+                            <Typography>Status: </Typography>
+                            <Typography>Payment Type: </Typography>
+                            <Typography>Date Paid: </Typography>
+                            <Typography>Property ID: </Typography>
+                        </AccordionDetails>
+                    </Accordion>
+                    </div>
                     <Link to="/tenant_dashboard"><button type = "button" class="dashboard-button">Back To Main Menu</button></Link>
                 </section>
             </div>

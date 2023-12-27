@@ -63,7 +63,7 @@ const Payment = () => {
             <Box class="navboard" sx={{ flexGrow: 1}}>
                 <AppBar position="static">
                     <Toolbar class="navbar">
-                        <Avatar class="small-logo" alt="Residence Realm Logo" src={rrlogo}/>
+                    <Link to="/tenant_dashboard"><Avatar class="small-logo" alt="Residence Realm Logo" src={rrlogo}/></Link>
                         <Typography class="title">Make Payment</Typography>
                         <Link to="/">
                         <IconButton aria-label="delete" size="large" color='secondary'>
@@ -97,6 +97,7 @@ const Payment = () => {
                             <label class="label" for="expire">Expiration Date</label>
                         </div>
                         <input type="submit" value="Submit" class="btn-signup"/>
+                        <Link to="/tenant_dashboard"><button type = "button" class="dashboard-button"> Back To Main Menu</button></Link>
                     </section>
                 </form>
             </div>
@@ -123,6 +124,7 @@ const Payment = () => {
                             <option value="savings">Savings</option>
                         </select>
                         <input type="submit" value="Submit" class="btn-signup"/>
+                        <Link to="/tenant_dashboard"><button type = "button" class="dashboard-button"> Back To Main Menu</button></Link>
                     </section>
                 </form>
             </div>

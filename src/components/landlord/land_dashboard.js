@@ -15,9 +15,10 @@ const Land_Dashboard = () => {
             fetchLandlordProperties()
             .then(fetchProperties => {
                 setProperties(fetchProperties);
+                console.log(fetchLandlordProperties);
             })
             .catch(error =>{
-                console(error);
+                console.error(error);
             });
         }, []);
 
@@ -60,7 +61,7 @@ const Land_Dashboard = () => {
                     </thead>
                     <tbody>
 
-                    {fetchLandlordProperties.map(property => (
+                    {/* {fetchLandlordProperties.map(property => (
                     <tr className="row" key={property.id}>
                             <td>{property.address}</td>
                             <td>{property.rent}</td>
@@ -71,7 +72,9 @@ const Land_Dashboard = () => {
                             <td><button type="button" className="table-button">Delete</button></td>
                             <td><button type="button" className="table-button">Add</button></td>
                         </tr>
-                    ))}
+                    ))} */}
+
+                    
                         </tbody>
                 </table>
 

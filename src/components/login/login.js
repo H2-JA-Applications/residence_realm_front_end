@@ -4,7 +4,7 @@ import { loginElements } from '../../utils/login_script';
 import rrlogo from "../../images/rrlogo.png"
 import AuthService from '../../services/AuthService';
 import PropTypes from 'prop-types'
- 
+ import { jwtDecode } from 'jwt-decode';
  
 const Login = ({setToken}) => {
     let [firstName, setFirstName] = useState('');
@@ -61,7 +61,11 @@ const Login = ({setToken}) => {
     let handleSubmit2 = (e) => {
         e.preventDefault();
         let user = {email:log_email, password:log_password}
-        authService.loginUser(user).then(()=>{
+        authService.loginUser(user).then((data)=>{
+            console.log(data);
+            const decodedToken = jwtDecode(data);
+
+            console.log('Decoded Token:', decodedToken);
             alert("login");
             navigate("/tenant_dashboard")
         }, ()=>{
