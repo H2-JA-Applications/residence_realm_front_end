@@ -9,6 +9,7 @@ export default class AuthService{
         localStorage.setItem("token", token);
     }
     addTenant(user){
+        localStorage.clear();
         return axios.post(addUser, user).then(response => {
             // Check if the response has a token and save it
             if (response.data && response.data.accessToken) {
@@ -18,18 +19,19 @@ export default class AuthService{
         })
     }
     addLandlord(user){
+        localStorage.clear();
         // console.log(response.data);
         return axios.post(addUser, user).then(response => {
             console.log(user);
             // Check if the response has a token and save it
             if (response.data && response.data.accessToken) {
-                localStorage.clear();
                 this.saveToken(response.data.accessToken);
             }
             return response.data;
         });
     }
     loginUser(user){
+        localStorage.clear();
         return axios.post(loginUrl, user).then(response => {
             // Check if the response has a token and save it
             if (response.data && response.data.accessToken) {
