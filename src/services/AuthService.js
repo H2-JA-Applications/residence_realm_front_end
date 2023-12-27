@@ -12,7 +12,7 @@ export default class AuthService{
         localStorage.setItem("role", role);
     }
     addTenant(user){
-        localStorage.clear()
+        localStorage.clear();
         return axios.post(addUser, user).then(response => {
             // Check if the response has a token and save it
             if (response.data && response.data.accessToken) {
@@ -22,8 +22,8 @@ export default class AuthService{
         })
     }
     addLandlord(user){
+        localStorage.clear();
         // console.log(response.data);
-        localStorage.clear()
         return axios.post(addUser, user).then(response => {
             console.log(user);
             // Check if the response has a token and save it
@@ -34,7 +34,7 @@ export default class AuthService{
         });
     }
     loginUser(user){
-        localStorage.clear()
+        localStorage.clear();
         return axios.post(loginUrl, user).then(response => {
             // Check if the response has a token and save it
             if (response.data && response.data.accessToken && response.data.role) {
