@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import rrlogo from "../../images/rrlogo.png"
 import { Link } from 'react-router-dom';
 
@@ -15,9 +15,35 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
-
+import Paper  from '@mui/material/Paper';
+import UserInfo from '../../utils/userInfo';
 const Ten_Dashboard = () => {
     const [date] = useState(new Date());
+    const authService = new UserInfo();
+    let [information, setInformation] = useState([]);
+    const formatPhoneNumber = (phoneNumber) => {
+        const cleaned = ('' + phoneNumber).replace(/\D/g, '');
+        const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+      
+        if (match) {
+          return `(${match[1]}) ${match[2]} - ${match[3]}`;
+        }
+        return phoneNumber;
+      };
+
+      
+    useEffect(() => {
+        // Load payment history when the component mounts
+        authService.viewInfo().then(data => {
+            setInformation(data);
+            console.log(data);
+        }).catch(error => {
+            console.error('Error fetching information:', error);
+        });
+    }, []);
+
+
+
     const [openConfirmation, setOpenConfirmation] = useState(false);
 
     const handleRemoveRental = () => {
@@ -60,14 +86,55 @@ const Ten_Dashboard = () => {
             </Box>
             <div class="container">
                 <div class="dashboard">
-                    <p class="upcoming">Upcoming payment: {date.toLocaleDateString()}</p>
-                    <p class="heading">Menu Options</p>
                     <section class="single-column">
-                        {/* <Link to="/tenant_dashboard/choose_rental"><button type="button" class="dashboard-button">Choose Rdental</button></Link> */}
-                        <Link to="/tenant_dashboard/payment"><button type="button" class="dashboard-button">Make Payment</button></Link>
-                        {/* <Link to="/tenant_dashboard/view_receipts"><button type="button" class="dashboard-button">View Receipts</button></Link> */}
+                    {information.data ? (
+                    <Paper elevation={3}>
+                        <Box p={5}>
+                        <Avatar sx={{float: 'right'}}>
+                            {information.data.firstName?.charAt(0).toUpperCase()}{information.data.lastName?.charAt(0).toUpperCase()}
+                        </Avatar>
+                        <Typography variant="h5" gutterBottom>
+                            Tenant Information
+                        </Typography>
+                        <Typography variant="body1">
+                            <strong>Name:</strong> {information.data.firstName} {information.data.lastName}
+                        </Typography>
+                        <Typography variant="body1">
+                            <strong>Email:</strong> {information.data.email}
+                        </Typography>
+                        <Typography variant="body1">
+                            <strong>Phone:</strong> {formatPhoneNumber(information.data.phoneNumber)}
+                        </Typography>
+                        <Typography variant="body1">
+                            <strong>Date of Birth:</strong> {new Date(information.data.dob).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })}
+                        </Typography>
+                        </Box>
+                    </Paper>
+                    ) : null}
+    
+
+                    {information.data && information.data.rentedProperty !== undefined ? (
+                            <p className="upcoming">UPCOMING PAYMENT: {date.toLocaleDateString()}</p>
+                            ) : (
+                            <p className="upcoming">NO PROPERTY RENTED</p>
+                        )}
+
+                    
+                    <p class="heading">Menu Options</p>
+                    <Link to="/tenant_dashboard/payment">
+                        <button
+                            type="button"
+                            className="dashboard-button"
+                            disabled={!information.data || information.data.rentedProperty === null}
+                            style={{
+                            opacity: !information.data || information.data.rentedProperty === null ? 0.5 : 1,
+                            }}
+                        >
+                        Make Payment
+                        </button>
+                    </Link>
+                        
                         <Link to="/tenant_dashboard/payment_detail"><button type="button" class="dashboard-button">Pay History</button></Link>
-                        {/* <Button type="button" class="dashboard-button" onClick={handleRemoveRental}>Remove Rentals</Button> */}
                     </section>
                 </div>
             </div>

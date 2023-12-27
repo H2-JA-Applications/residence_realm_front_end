@@ -3,6 +3,7 @@ import { axiosInterceptor } from "../utils/useToken.js";
 axiosInterceptor();
 const addUser = "http://localhost:8080/api/v1/auth/register";
 const loginUrl = "http://localhost:8080/api/v1/auth/login";
+const infoURL = "http://localhost:8080/api/v1/auth";
 
 export default class AuthService{
     saveToken(token) {
@@ -10,6 +11,9 @@ export default class AuthService{
     }
     saveRole(role) {
         localStorage.setItem("role", role);
+    }
+    viewInfo() {
+        return axios.get(infoURL);
     }
     addTenant(user){
         localStorage.clear();
@@ -53,13 +57,3 @@ export default class AuthService{
     }
 
 }
-
-
-// const requestHTTPOptions = {
-//     method: 'POST',
-//     headers: {
-//         'Content-Type': 'application/json',
-//         'Authorization': 'Bearer {AuthService.token}'
-//     },
-//     body: JSON.stringify(user)
-// }
