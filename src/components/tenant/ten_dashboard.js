@@ -63,11 +63,11 @@ const Ten_Dashboard = () => {
                     <p class="upcoming">Upcoming payment: {date.toLocaleDateString()}</p>
                     <p class="heading">Menu Options</p>
                     <section class="single-column">
-                        <Link to="/tenant_dashboard/choose_rental"><button type="button" class="dashboard-button">Choose Rental</button></Link>
+                        {/* <Link to="/tenant_dashboard/choose_rental"><button type="button" class="dashboard-button">Choose Rdental</button></Link> */}
                         <Link to="/tenant_dashboard/payment"><button type="button" class="dashboard-button">Make Payment</button></Link>
-                        <Link to="/tenant_dashboard/view_receipts"><button type="button" class="dashboard-button">View Receipts</button></Link>
+                        {/* <Link to="/tenant_dashboard/view_receipts"><button type="button" class="dashboard-button">View Receipts</button></Link> */}
                         <Link to="/tenant_dashboard/payment_detail"><button type="button" class="dashboard-button">Pay History</button></Link>
-                        <Button type="button" class="dashboard-button" onClick={handleRemoveRental}>Remove Rentals</Button>
+                        {/* <Button type="button" class="dashboard-button" onClick={handleRemoveRental}>Remove Rentals</Button> */}
                     </section>
                 </div>
             </div>

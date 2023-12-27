@@ -54,7 +54,9 @@ const Payment = () => {
         });
 
     }
-
+    useEffect(() => {
+        loginElements();
+    }, []);
     return(
         <body>
             <Box class="navboard" sx={{ flexGrow: 1}}>
@@ -69,6 +71,7 @@ const Payment = () => {
                     </Toolbar>
                 </AppBar>
             </Box>
+            <div class ="container">
             <div class="forms">
             <div class="form-wrapper is-active">
                 <button type="button" class="switcher switcher-login">
@@ -124,7 +127,7 @@ const Payment = () => {
                 </form>
             </div>
         </div>
-
+        </div>
             
         </body>
   );

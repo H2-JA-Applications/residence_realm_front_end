@@ -51,11 +51,11 @@ const Land_Dashboard = () => {
                 </table>
 
                     <p class="heading">Menu Options</p>
-                    <Link to="/landlord_dashboard/receive_pay"><button type = "button" class="dashboard-button">Add Tenant</button></Link>
+                    {/* <Link to="/landlord_dashboard/receive_pay"><button type = "button" class="dashboard-button">Add Tenant</button></Link> */}
+                    <Link to="/landlord_dashboard/add_rentals"><button type = "button" class="dashboard-button">Add Rental</button></Link>
                     <Link to="/landlord_dashboard/receive_pay"><button type = "button" class="dashboard-button">Received Payments</button></Link>
                     <Link to="/landlord_dashboard/track_late"><button type = "button" class="dashboard-button">Track Late Payment</button></Link>
                     <Link to="/landlord_dashboard/manage_pay"><button type = "button" class="dashboard-button">Manage Finances</button></Link>
-                    <Link to="/landlord_dashboard/add_rentals"><button type = "button" class="dashboard-button">Add Rental</button></Link>
                 </section>
             </div>
 
