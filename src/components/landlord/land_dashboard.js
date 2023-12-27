@@ -8,25 +8,14 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-import { fetchLandlordProperties } from '../landlord/stuff';
 const Land_Dashboard = () => {
-        const [properties, setProperties] = useState(null);
-        useEffect(() => {
-            fetchLandlordProperties()
-            .then(fetchProperties => {
-                setProperties(fetchProperties);
-                console.log(fetchLandlordProperties);
-            })
-            .catch(error =>{
-                console.error(error);
-            });
-        }, []);
 
     let handleLogout = (e) => {
         e.preventDefault();
 
         console.log("LOGGING OUT ......")
         localStorage.removeItem("token");
+        localStorage.removeItem("role");
         window.location.href = "/"
         
     }
@@ -59,23 +48,6 @@ const Land_Dashboard = () => {
                             <th>Add Tenant</th>
                         </tr>
                     </thead>
-                    <tbody>
-
-                    {/* {fetchLandlordProperties.map(property => (
-                    <tr className="row" key={property.id}>
-                            <td>{property.address}</td>
-                            <td>{property.rent}</td>
-                            <td>{property.apartmentNumber}</td>
-                            <td>{property.apartmentType}</td>
-                            <td>{property.dueDate}</td>
-                            <td><button type="button" className="table-button">Edit</button></td>
-                            <td><button type="button" className="table-button">Delete</button></td>
-                            <td><button type="button" className="table-button">Add</button></td>
-                        </tr>
-                    ))} */}
-
-                    
-                        </tbody>
                 </table>
 
                     <p class="heading">Menu Options</p>

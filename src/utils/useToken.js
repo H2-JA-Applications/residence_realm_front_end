@@ -14,7 +14,7 @@ export const axiosInterceptor = () => {
 
     return response;
   }, error =>{
-    if(error.response && error.response.status === 403){
+    if(error.response && error.response.status === 500){
       
       localStorage.clear()
       window.location.href = "/";

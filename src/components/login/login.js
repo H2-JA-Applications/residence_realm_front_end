@@ -4,9 +4,10 @@ import { loginElements } from '../../utils/login_script';
 import rrlogo from "../../images/rrlogo.png"
 import AuthService from '../../services/AuthService';
 import PropTypes from 'prop-types'
- import { jwtDecode } from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
  
-const Login = ({setToken}) => {
+ 
+const Login = () => {
     let [firstName, setFirstName] = useState('');
     let [lastName, setLastName] = useState('');
     let [phoneNumber, setPhone_Number] = useState('');
@@ -15,6 +16,8 @@ const Login = ({setToken}) => {
     let [password, setPassword] = useState('');
     let [con_password, setConfirmPassword] = useState('');
     let [role, setRole] = useState('');
+    let [roles, setRoles]  = useState([]);
+    let [token, setToken]  = useState([]);
  
     let [log_email, setLogEmail] = useState('');
     let [log_password, setLogPassword] = useState('');
@@ -61,18 +64,33 @@ const Login = ({setToken}) => {
     let handleSubmit2 = (e) => {
         e.preventDefault();
         let user = {email:log_email, password:log_password}
-        authService.loginUser(user).then((data)=>{
-            console.log(data);
-            const decodedToken = jwtDecode(data);
+        // authService.loginUser(user).then(()=>{
+        //     navigate("/tenant_dashboard")
+        //     alert("login");
+        // }, ()=>{
+        //     alert("failed!");
 
-            console.log('Decoded Token:', decodedToken);
-            alert("login");
-            navigate("/tenant_dashboard")
+        authService.loginUser(user).then(()=>{
+            setRoles(localStorage.getItem("role"))
+            setToken(localStorage.getItem("token"))
+            alert(roles);
         }, ()=>{
             alert("failed!");
-        });
+        });    
+        if (token) {
+            // Navigate based on user role
+            if (roles === 'ROLE_TENANT') {
+                navigate('/tenant_dashboard');
+            } else if (roles ==='ROLE_LANDLORD') {
+                navigate('/landlord_dashboard');
+            }
+        } else {
+            alert("failed!");
+        }
+    };
+        //});
  
-    }
+   // }
         // let userlogin = { email: email, password: password}
         // const token = await AuthService.loginUser(userlogin)
         // setToken(token);
