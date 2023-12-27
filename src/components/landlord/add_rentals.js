@@ -17,12 +17,14 @@ const Add_Rental = () => {
     let [property_type, setPropertyType] = useState('');
     let [due_date, setDate] = useState('');
     let [apt_num, setApt] = useState('');
+    let [tenId, setTenId] = useState('');
 
     let handleAddress = (e) => { setAddress(e.target.value) }
     let handleRent = (e) => { setRent(e.target.value) }
     let handlePropertyType = (e) => { setPropertyType(e.target.value) }
     let handleDate = (e) => { setDate(e.target.value) }
     let handleApt = (e) => { setApt(e.target.value) }
+    let handleTenId = (e) => { setTenId(e.target.value) }
 
 
     let navigate = useNavigate();
@@ -55,6 +57,10 @@ const Add_Rental = () => {
             <div class="panel">
             <form onSubmit={handleSubmit}>
                 <section class="single-column">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
                 <section class="double-column">
                     <div class="input-form">
                         <input class="input" onChange = {handleAddress} value = {address} id="l_address" type="text" required name="l_address"/>
@@ -74,11 +80,15 @@ const Add_Rental = () => {
                         <option value="condo">Condo</option>
                         <option value="house">House</option>
                     </select>
-                </section>
                     <div class="input-form">
                             <input class="input" onChange = {handleApt} value = {apt_num} id="apt_num" type="text" required name="apt_num"/>
                             <label class="label" for="apt_num">Apt Number</label>
                     </div>
+                    <div class="input-form">
+                            <input class="input" onChange = {handleTenId} value = {tenId} id="tenId" type="text" required name="tenId"/>
+                            <label class="label" for="tenId">Tenant ID</label>
+                    </div>
+                    </section>
                         <input type="submit" value="Submit" class="dashboard-button"/>
                     <Link to="/landlord_dashboard"><button type = "button" class="dashboard-button">Back To Dashboard</button></Link>
                 </section>
