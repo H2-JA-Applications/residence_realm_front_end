@@ -8,7 +8,11 @@ export default class AuthService{
     saveToken(token) {
         localStorage.setItem("token", token);
     }
+    saveRole(role) {
+        localStorage.setItem("role", role);
+    }
     addTenant(user){
+        localStorage.clear()
         return axios.post(addUser, user).then(response => {
             // Check if the response has a token and save it
             if (response.data && response.data.accessToken) {
@@ -19,21 +23,23 @@ export default class AuthService{
     }
     addLandlord(user){
         // console.log(response.data);
+        localStorage.clear()
         return axios.post(addUser, user).then(response => {
             console.log(user);
             // Check if the response has a token and save it
             if (response.data && response.data.accessToken) {
-                localStorage.clear();
                 this.saveToken(response.data.accessToken);
             }
             return response.data;
         });
     }
     loginUser(user){
+        localStorage.clear()
         return axios.post(loginUrl, user).then(response => {
             // Check if the response has a token and save it
-            if (response.data && response.data.accessToken) {
+            if (response.data && response.data.accessToken && response.data.role) {
                 this.saveToken(response.data.accessToken);
+                this.saveRole(response.data.role);
             }
             else{
                 console.log("Login failed no token in response ");

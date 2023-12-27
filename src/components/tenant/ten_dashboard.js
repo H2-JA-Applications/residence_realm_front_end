@@ -23,6 +23,15 @@ const Ten_Dashboard = () => {
     const handleRemoveRental = () => {
         setOpenConfirmation(true);
     };
+    let handleLogout = (e) => {
+        e.preventDefault();
+
+        console.log("LOGGING OUT ......")
+        localStorage.removeItem("token");
+        localStorage.removeItem("role");
+        window.location.href = "/"
+        
+    }
 
     const handleConfirmationClose = () => {
         setOpenConfirmation(false);
@@ -41,7 +50,7 @@ const Ten_Dashboard = () => {
                     <Toolbar class="navbar">
                         <Avatar class="small-logo" alt="Residence Realm Logo" src={rrlogo} />
                         <Typography class="title">Tenant Dashboard</Typography>
-                        <Link to="/">
+                        <Link onClick={handleLogout}>
                             <IconButton aria-label="delete" size="large" color='secondary'>
                                 <LogoutIcon fontSize="inherit" />
                             </IconButton>
