@@ -28,12 +28,12 @@ const TenantDashboard = () => {
       
     useEffect(() => {
         // Load payment history when the component mounts
-        authService.viewInfo().then(data => {
-            if (!data) window.location.href = "/";
-            setInformation(data);
-        }).catch(error => {
-            console.error('Error fetching information:', error);
-        });
+        // authService.viewInfo().then(data => {
+        //     if (!data) window.location.href = "/";
+        //     setInformation(data);
+        // }).catch(error => {
+        //     console.error('Error fetching information:', error);
+        // });
     },);
 
     let handleLogout = (e) => {

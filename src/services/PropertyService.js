@@ -3,7 +3,7 @@ import {axiosInterceptor} from "../utils/useToken";
 
 axiosInterceptor();
 
-
+const landlordProperties = 'http://localhost:8080/api/properties/landlord/properties';
 
 
 class PropertyService{
@@ -42,6 +42,14 @@ class PropertyService{
         return axios.get(`${this.getAllPropertUrl}/${propertyId}`, this.config)
         .catch(err => {
             console.error("Error: whille getting property", err);
+        });
+    }
+
+    getLandlordProperties(){
+        return axios.get(landlordProperties).then(response => {
+            console.log(response);
+            console.log(response.data);
+            return response.data;
         });
     }
 
