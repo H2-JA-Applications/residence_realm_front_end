@@ -16,16 +16,16 @@ import Track_Late from "./landlord/track_late";
 import Manage_Pay from "./landlord/manage_pay";
 import Received_Pay from "./landlord/receive_pay";
 const App = () => {
-    let [token, setToken] = useState(localStorage.getItem('jwtToken'));
-    let [roles, setRoles]  = useState([]);
+    // let [token, setToken] = useState(localStorage.getItem('jwtToken'));
+    // let [roles, setRoles]  = useState([]);
 
-    useEffect(() => {
-        if (token) {
-            const decodedToken = jwtDecode(token);
-            setRoles(localStorage.getItem("role"))
+    // useEffect(() => {
+    //     if (token) {
+    //         const decodedToken = jwtDecode(token);
+    //         setRoles(localStorage.getItem("role"))
 
-        }
-    }, [token]);
+    //     }
+    // }, [token]);
 
     const tenantRoutes = [
         { path: "/tenant_dashboard", element: <TenantDashboard />, exact: true },
@@ -38,7 +38,7 @@ const App = () => {
     const landlordRoutes = [
         { path: "/landlord_dashboard", element: <LandlordDashboard />, exact: true },
         { path: "/landlord_dashboard/receive_pay", element: <Received_Pay />, exact: true },
-        { path: "/landlord_dashboard/track_late", element: <Track_Late />, exact: true },   
+        { path: "/landlord_dashboard/track_late", element: <Track_Late />, exact: true },
         { path: "/landlord_dashboard/manage_pay", element: <Manage_Pay />, exact: true },
         { path: "/landlord_dashboard/add_rentals", element: <Add_Rental />, exact: true },
     ];

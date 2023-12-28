@@ -12,8 +12,6 @@ const LandlordDashboard = () => {
 
     let handleLogout = (e) => {
         e.preventDefault();
-
-        console.log("LOGGING OUT ......")
         localStorage.removeItem("token");
         localStorage.removeItem("role");
         window.location.href = "/"

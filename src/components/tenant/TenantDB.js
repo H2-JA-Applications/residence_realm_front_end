@@ -9,12 +9,6 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Button from '@mui/material/Button';
 import Paper  from '@mui/material/Paper';
 import UserInfo from '../../utils/userInfo';
 const TenantDashboard = () => {
@@ -35,38 +29,20 @@ const TenantDashboard = () => {
     useEffect(() => {
         // Load payment history when the component mounts
         authService.viewInfo().then(data => {
+            if (!data) window.location.href = "/";
             setInformation(data);
             console.log(data);
         }).catch(error => {
             console.error('Error fetching information:', error);
         });
-    }, []);
+    },);
 
-
-
-    const [openConfirmation, setOpenConfirmation] = useState(false);
-
-    const handleRemoveRental = () => {
-        setOpenConfirmation(true);
-    };
     let handleLogout = (e) => {
         e.preventDefault();
-
-        console.log("LOGGING OUT ......")
         localStorage.removeItem("token");
         localStorage.removeItem("role");
         window.location.href = "/"
     }
-
-    const handleConfirmationClose = () => {
-        setOpenConfirmation(false);
-    };
-
-    const handleRemoveConfirmed = () => {
-        // Implement the logic to remove the rental here
-        // For now, just close the confirmation popup
-        setOpenConfirmation(false);
-    };
 
     return (
         <body>
@@ -137,24 +113,6 @@ const TenantDashboard = () => {
                     </section>
                 </div>
             </div>
-
-            {/* Remove Rentals Confirmation Dialog */}
-            <Dialog open={openConfirmation} onClose={handleConfirmationClose}>
-                <DialogTitle>Confirmation</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        Are you sure you want to remove the current rental?
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleConfirmationClose} color="primary">
-                        Cancel
-                    </Button>
-                    <Button onClick={handleRemoveConfirmed} color="primary">
-                        Confirm
-                    </Button>
-                </DialogActions>
-            </Dialog>
         </body>
     )
 }
