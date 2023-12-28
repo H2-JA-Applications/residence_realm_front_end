@@ -14,7 +14,8 @@ import LandlordDashboard from "./landlord/LandlordDB";
 import Add_Rental from "./landlord/add_rentals";
 import Track_Late from "./landlord/track_late";
 import Manage_Pay from "./landlord/manage_pay";
-import ReceivePayments from "./landlord/LandlordReceivePay";
+import Received_Pay from "./landlord/receive_pay";
+import AddTenant from "./landlord/add_ten";
 const App = () => {
     // let [token, setToken] = useState(localStorage.getItem('jwtToken'));
     // let [roles, setRoles]  = useState([]);
@@ -41,6 +42,7 @@ const App = () => {
         { path: "/landlord_dashboard/track_late", element: <Track_Late />, exact: true },
         { path: "/landlord_dashboard/manage_pay", element: <Manage_Pay />, exact: true },
         { path: "/landlord_dashboard/add_rentals", element: <Add_Rental />, exact: true },
+        { path: "/landlord_dashboard/add_tenant", element: <AddTenant />, exact: true },
     ];
  
     return (

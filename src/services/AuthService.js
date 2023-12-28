@@ -4,6 +4,7 @@ axiosInterceptor();
 const addUser = "http://localhost:8080/api/v1/auth/register";
 const loginUrl = "http://localhost:8080/api/v1/auth/login";
 const infoURL = "http://localhost:8080/api/v1/auth";
+const info1URL = "http://localhost:8080/api/v1/auth/all";
 
 export default class AuthService{
     saveToken(token) {
@@ -54,6 +55,12 @@ export default class AuthService{
             console.log(error);
             throw error;
         });
+    }
+    getTenantsNoProp(){
+        return axios.get(info1URL).then(response => {
+            console.log(response.data);
+            return response.data;
+        });      
     }
 
 }

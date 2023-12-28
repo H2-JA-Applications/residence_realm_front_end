@@ -1,6 +1,5 @@
 import axios from "axios";
 import {axiosInterceptor} from "../utils/useToken";
-
 axiosInterceptor();
 
 const landlordProperties = 'http://localhost:8080/api/properties/landlord/properties';
