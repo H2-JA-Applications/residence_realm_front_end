@@ -9,7 +9,6 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import PropertyService from '../../services/PropertyService';
-
 const Add_Rental = () => {
 
     let [address, setAddress] = useState('');
@@ -83,10 +82,6 @@ const Add_Rental = () => {
                     <div class="input-form">
                             <input class="input" onChange = {handleApt} value = {apt_num} id="apt_num" type="text" required name="apt_num"/>
                             <label class="label" for="apt_num">Apt Number</label>
-                    </div>
-                    <div class="input-form">
-                            <input class="input" onChange = {handleTenId} value = {tenId} id="tenId" type="text" required name="tenId"/>
-                            <label class="label" for="tenId">Tenant ID</label>
                     </div>
                     </section>
                         <input type="submit" value="Submit" class="dashboard-button"/>

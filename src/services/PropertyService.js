@@ -4,7 +4,8 @@ import {axiosInterceptor} from "../utils/useToken";
 axiosInterceptor();
 
 const landlordProperties = 'http://localhost:8080/api/properties/landlord/properties';
-
+const receivedProperties = 'http://localhost:8080/api/payment/all/4';
+const TenanttoProperty = 'http://localhost:8080/api/properties/';
 
 class PropertyService{
     constructor() {
@@ -47,13 +48,29 @@ class PropertyService{
 
     getLandlordProperties(){
         return axios.get(landlordProperties).then(response => {
-            console.log(response);
-            console.log(response.data);
             return response.data;
         });
     }
 
+    getPropertyReceipts(){
+        return axios.get(receivedProperties).then(response => {
+            return response.data;
+        });
+    }
 
+    addTenanttoProperty(propId, tenId) {
+        let url = `${TenanttoProperty}${propId}/add/${tenId}`;
+        return axios.post(url).then(response => {
+            return response.data;
+        });
+    }
+    
+    removeTenanttoProperty(propId, tenId) {
+        let url = `${TenanttoProperty}${propId}/removeTenant/${tenId}`;
+        return axios.put(url).then(response => {
+            return response.data;
+        });
+    }
 }
 const propertyService = new PropertyService();
 export default propertyService;

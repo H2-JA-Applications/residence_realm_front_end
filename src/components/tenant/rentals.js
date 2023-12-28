@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import rrlogo from "../../images/rrlogo.png"
 import { Link } from 'react-router-dom';
-import fetchPaymentsData  from './properties';
 import LogoutIcon from '@mui/icons-material/Logout';
 import IconButton from '@mui/material/IconButton';
 import AppBar from '@mui/material/AppBar';
@@ -16,16 +15,6 @@ const Rental = () => {
     const [selectedRow, setSelectedRow] = useState(null);
     const [payments, setPayments] = useState([]);
 
-    useEffect(() => {
-        fetchPaymentsData()
-            .then(fetchedData => {
-                setPayments(fetchedData);
-            })
-            .catch(error => {
-                // Handle the error here
-                console.log(error);
-            });
-    }, []);
     
     return(
         <body>
@@ -56,16 +45,7 @@ const Rental = () => {
         </tr>
       </thead>
       <tbody>
-        {payments.map(payment => (
-          <tr key={payment.id}>
-            <td>{payment.tenantId}</td>
-            <td>{payment.propertyId}</td>
-            <td>{payment.amount}</td>
-            <td>{payment.timestamp}</td>
-            <td>{payment.datePaid}</td>
-            <td>{payment.paymentStatus}</td>
-          </tr>
-        ))}
+
       </tbody>
     </table>
                     

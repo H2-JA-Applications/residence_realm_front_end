@@ -8,19 +8,9 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-import { fetchLandlordProperties } from '../landlord/stuff';
+
 const Track_Late = () => {
     const [properties, setProperties] = useState(null);
-
-    useEffect(() => {
-        fetchLandlordProperties()
-            .then(fetchedProperties => {
-                setProperties(fetchedProperties);
-            })
-            .catch(error => {
-                // Handle the error here
-            });
-    }, []);
 
     return(
         <body>
@@ -50,19 +40,7 @@ const Track_Late = () => {
                         </tr>
                     </thead>
                     <tbody>
-                            {properties.map(property => (
-                                <tr
-                                    class="row"
-                                    key={property.id}
-                                >
-                                    <td>{property.id}</td>
-                                    <td>{property.rent}</td>
-                                    <td>{property.dueDate}</td>
-                                    <td>{property.dueDate}</td>
-                                    <td>{property.dueDate}</td>
-                                    
-                                </tr>
-                            ))}
+
                         </tbody>
                 </table>
                     <Link to="/landlord_dashboard"><button type = "button" class="dashboard-button">Back To Dashboard</button></Link>
