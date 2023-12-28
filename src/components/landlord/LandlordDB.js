@@ -15,7 +15,6 @@ const LandlordDashboard = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("role");
         window.location.href = "/"
-        
     }
 
     return(

@@ -31,7 +31,6 @@ const TenantDashboard = () => {
         authService.viewInfo().then(data => {
             if (!data) window.location.href = "/";
             setInformation(data);
-            console.log(data);
         }).catch(error => {
             console.error('Error fetching information:', error);
         });
