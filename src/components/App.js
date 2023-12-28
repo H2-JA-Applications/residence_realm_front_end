@@ -5,12 +5,12 @@ import "./styles/app.css";
 
 // Import your components
 import Login from "./login/login";
-import TenantDashboard from "./tenant/TenantDashboard";
+import TenantDashboard from "./tenant/TenantDB";
 import Rental from "./tenant/rentals";
 import Payment from "./tenant/payment";
 import Receipts from "./tenant/receipts";
 import Payment_Details from "./tenant/payment_dets";
-import Land_Dashboard from "./landlord/land_dashboard";
+import LandlordDashboard from "./landlord/LandlordDB";
 import Add_Rental from "./landlord/add_rentals";
 import Track_Late from "./landlord/track_late";
 import Manage_Pay from "./landlord/manage_pay";
@@ -36,7 +36,7 @@ const App = () => {
     ];
     
     const landlordRoutes = [
-        { path: "/landlord_dashboard", element: <Land_Dashboard />, exact: true },
+        { path: "/landlord_dashboard", element: <LandlordDashboard />, exact: true },
         { path: "/landlord_dashboard/receive_pay", element: <Received_Pay />, exact: true },
         { path: "/landlord_dashboard/track_late", element: <Track_Late />, exact: true },   
         { path: "/landlord_dashboard/manage_pay", element: <Manage_Pay />, exact: true },
