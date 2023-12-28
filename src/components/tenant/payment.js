@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {  useNavigate } from 'react-router-dom';
-import { loginElements } from '../../utils/login_script';
+import { loginElements } from '../../utils/LoginScript';
 import rrlogo from "../../images/rrlogo.png"
 import { Link } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';

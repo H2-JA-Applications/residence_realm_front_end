@@ -17,7 +17,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import Paper  from '@mui/material/Paper';
 import UserInfo from '../../utils/userInfo';
-const Ten_Dashboard = () => {
+const TenantDashboard = () => {
     const [date] = useState(new Date());
     const authService = new UserInfo();
     let [information, setInformation] = useState([]);
@@ -56,7 +56,6 @@ const Ten_Dashboard = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("role");
         window.location.href = "/"
-        
     }
 
     const handleConfirmationClose = () => {
@@ -157,7 +156,7 @@ const Ten_Dashboard = () => {
                 </DialogActions>
             </Dialog>
         </body>
-    );
+    )
 }
 
-export default Ten_Dashboard;
+export default TenantDashboard;
