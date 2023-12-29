@@ -13,24 +13,22 @@ const Add_Rental = () => {
 
     let [address, setAddress] = useState('');
     let [rent, setRent] = useState('');
-    let [property_type, setPropertyType] = useState('');
+    let [apartment_type, setPropertyType] = useState('');
     let [due_date, setDate] = useState('');
     let [apt_num, setApt] = useState('');
-    let [tenId, setTenId] = useState('');
 
     let handleAddress = (e) => { setAddress(e.target.value) }
     let handleRent = (e) => { setRent(e.target.value) }
     let handlePropertyType = (e) => { setPropertyType(e.target.value) }
     let handleDate = (e) => { setDate(e.target.value) }
     let handleApt = (e) => { setApt(e.target.value) }
-    let handleTenId = (e) => { setTenId(e.target.value) }
 
 
     let navigate = useNavigate();
 
     let handleSubmit = (e) => {
         e.preventDefault();
-        let property = {address:address, rent: rent, apartmentNum: apt_num, propertyType: property_type, dueDate: due_date}
+        let property = {address:address, rent: rent, apartmentNumber: apt_num, apartmentType: apartment_type, dueDate: due_date}
         PropertyService.addProperty(property).then(()=>{
             alert("Property added");
             navigate("/landlord_dashboard")
@@ -73,7 +71,7 @@ const Add_Rental = () => {
                         <input class="input" onChange = {handleDate} value = {due_date} id="due_date" type="text" required name="due_date"/>
                         <label class="label" for="due_date">Due Date</label>
                     </div>
-                    <select name="role" onChange = {handlePropertyType} value = {property_type} id="property_type" selectedIndex="-1" class="input2">
+                    <select name="role" onChange = {handlePropertyType} value = {apartment_type} id="property_type" selectedIndex="-1" class="input2">
                         <option value="">Select Property Type</option>
                         <option value="apartment">Apartment</option>
                         <option value="condo">Condo</option>

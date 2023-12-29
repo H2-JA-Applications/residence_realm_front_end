@@ -30,8 +30,9 @@ const LandlordDashboard = () => {
         localStorage.removeItem("role");
         window.location.href = "/"
     }
-    const addTenantButton = () =>{
-        navigate('/landlord_dashboard/add_tenant'); 
+    const addTenantButton = (propertyID) =>{
+        localStorage.setItem("propertyID", propertyID)
+        navigate(`/landlord_dashboard/${propertyID}/add_tenant`); 
     }
 
     useEffect(() => {
@@ -90,7 +91,7 @@ const LandlordDashboard = () => {
                     <td>{property.rent}</td>
                     <td>
                         {property.tenants === null || property.tenants === undefined || property.tenants.length === 0 ? (
-                            <button onClick={() => {addTenantButton()}}>Add Tenant</button>
+                            <button onClick={() => {addTenantButton(property.id)}}>Add Tenant</button>
                         ) : (
                             <p>{property.tenants[0].firstName} {property.tenants[0].lastName}</p>
                         )}
@@ -106,7 +107,6 @@ const LandlordDashboard = () => {
                     <Link to="/landlord_dashboard/add_rentals"><button type = "button" class="dashboard-button">Add Property</button></Link>
                     <Link to="/landlord_dashboard/receive_pay"><button type = "button" class="dashboard-button">Received Payments</button></Link>
                     <Link to="/landlord_dashboard/track_late"><button type = "button" class="dashboard-button">Track Late Payment</button></Link>
-                    <Link to="/landlord_dashboard/manage_pay"><button type = "button" class="dashboard-button">Manage Finances</button></Link>
                 </section>
             </div>
 

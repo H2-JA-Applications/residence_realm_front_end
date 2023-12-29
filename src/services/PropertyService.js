@@ -27,7 +27,7 @@ class PropertyService{
         });
     }
     addTenant(propertyId, userID){
-        return axios.post(`${this.getAllPropertUrl}/${propertyId}/add`, userID, this.config)
+        return axios.put(`${this.getAllPropertUrl}/${propertyId}/add/${userID}`, userID, this.config)
         .catch(err => {
             console.error("Error: whille adding tenant", err);
         });

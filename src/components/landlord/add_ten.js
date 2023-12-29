@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import rrlogo from "../../images/rrlogo.png";
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
 import IconButton from '@mui/material/IconButton';
 import AppBar from '@mui/material/AppBar';
@@ -11,12 +11,14 @@ import Avatar from '@mui/material/Avatar';
 import Paper from '@mui/material/Paper';
 import UserInfo from '../../utils/userInfo';
 import AuthService from '../../services/AuthService';
+import propertyService from '../../services/PropertyService';
  
 const AddTenant = () => {
   const [tenants, setTenants] = useState([]);
-  let [ten, setTen] = useState('');
+  let ten = useState('');
+  const propertyID = localStorage.getItem("propertyID");
   const authService = new AuthService();
-
+  
   
  
   let handleLogout = (e) => {
@@ -36,6 +38,16 @@ const AddTenant = () => {
   function findtenant(tenants, id) {
     return tenants.filter(tenant => tenant.id == id)
   }
+  let handleSubmit = (e) => {
+    e.preventDefault();
+    propertyService.addTenanttoProperty(propertyID, ten).then( ()=> {
+      alert("Tenant added")
+      localStorage.removeItem("propertyID");
+    }).catch(error => {
+      console.error('Error adding tenants:', error);
+    });
+    
+  }
  
   const handleDropdownChange = (event) => {
     const selectedTenantId = event.target.value;
@@ -43,10 +55,9 @@ const AddTenant = () => {
     
     const emailInput = document.getElementById('email');
     const phoneNumInput = document.getElementById('phoneNum');
-    
-    setTen(selectedTenant[0].firstName);
-    
-    console.log(selectedTenant)
+
+    ten = selectedTenantId;
+    console.log(ten)
     emailInput.value = '';
     phoneNumInput.value = '';
     
@@ -74,7 +85,7 @@ const AddTenant = () => {
         </Box>
     <div class="container">
         <div class="panel">
-            <form>
+            <form onSubmit= {handleSubmit}>
                 <section class="single-column">
                 <br />
                 <br />
@@ -82,7 +93,7 @@ const AddTenant = () => {
                 <br />
                     <section class="double-column">
                     {tenants ? (
-                        <select name="ten" id="ten" value={ten} onChange={handleDropdownChange} class="input2">
+                        <select name="tens" id="tens" value="" onChange={handleDropdownChange} class="input2">
                             <option value="">Select Tenant</option>
                             {tenants.map((tenant, index) => (
                                 <option value={tenant.id} key={index}>{tenant.firstName} {tenant.lastName}</option>
@@ -94,6 +105,7 @@ const AddTenant = () => {
                         </div>
                         <div class="input-form">
                         <input type="text" id="phoneNum" readOnly />
+                        <input type="submit" value="Submit" class="dashboard-button"/>
                         </div>
                     </section>
                 </section>

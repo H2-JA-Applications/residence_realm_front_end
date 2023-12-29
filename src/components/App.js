@@ -42,7 +42,7 @@ const App = () => {
         { path: "/landlord_dashboard/track_late", element: <Track_Late />, exact: true },
         { path: "/landlord_dashboard/manage_pay", element: <Manage_Pay />, exact: true },
         { path: "/landlord_dashboard/add_rentals", element: <Add_Rental />, exact: true },
-        { path: "/landlord_dashboard/add_tenant", element: <AddTenant />, exact: true },
+        { path: "/landlord_dashboard/:propertyID/add_tenant", element: <AddTenant />, exact: true },
     ];
  
     return (
