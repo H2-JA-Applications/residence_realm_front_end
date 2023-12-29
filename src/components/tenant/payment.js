@@ -34,10 +34,15 @@ const Payment = () => {
 
     let handleSubmit = (e) => {
         e.preventDefault();
-        let pay = {accountNum:accountNum, routeNum:routeNum, accountType: accountType, type: "debit/credit" }
+        let pay = {
+            type: "debit/credit",
+            echeckPayment: null,
+            cardPayments: {creditNum:creditNum, csv:csv, expire: expire}
+        }
+        console.log(pay)
         paymentService.addPayment(pay).then(()=>{
             alert("payment processed");
-            navigate("/landlord_dashboard")
+            navigate("/tenant_dashboard")
         }, ()=>{
             alert("failed!");
         });
@@ -45,10 +50,15 @@ const Payment = () => {
     }
     let handleSubmit2 = (e) => {
         e.preventDefault();
-        let pay = {creditNum:creditNum, csv:csv, expire: expire, type:"ach/e_check" }
+        let pay = {
+            type: "eCheck",
+            echeckPayment:{accountNum:accountNum, routeNum:routeNum, accountType: accountType},
+            cardPayments: null
+        }
+        console.log(pay)
         paymentService.addPayment(pay).then(()=>{
             alert("payment processed");
-            navigate("/landlord_dashboard")
+            navigate("/tenant_dashboard")
         }, ()=>{
             alert("failed!");
         });

@@ -106,6 +106,7 @@ const AddTenant = () => {
                         <div class="input-form">
                         <input type="text" id="phoneNum" readOnly />
                         <input type="submit" value="Submit" class="dashboard-button"/>
+                        <Link to="/landlord_dashboard"><button type = "button" class="dashboard-button">Back To Dashboard</button></Link>
                         </div>
                     </section>
                 </section>

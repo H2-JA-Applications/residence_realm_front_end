@@ -81,7 +81,7 @@ const TenantDashboard = () => {
                             <strong>Phone:</strong> {formatPhoneNumber(information.data.phoneNumber)}
                         </Typography>
                         <Typography variant="body1">
-                            <strong>Date of Birth:</strong> {new Date(information.data.dob).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })}
+                            <strong>Date of Birth:</strong> {new Date(information.data.dateOfBirth).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })}
                         </Typography>
                         </Box>
                     </Paper>

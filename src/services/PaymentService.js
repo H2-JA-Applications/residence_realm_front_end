@@ -1,7 +1,7 @@
 import axios from "axios";
 import { axiosInterceptor } from "../utils/useToken.js";
 axiosInterceptor();
-const addPaymentUrl = "http://localhost:8080/api/payment";
+const addPaymentUrl = "http://localhost:8080/api/payment/pay";
 // const addLandLordUrl = "http://localhost:8080/api/v1/auth/register/landlord";
 const paymenthist = "http://localhost:8080/api/payment/tenant/payments"
 // const addLandLordUrl = "http://localhost:8080/api/v1/auth/register/landlord";
