@@ -11,6 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
+import PaymentService from '../../services/PaymentService';
 import propertyService from '../../services/PropertyService';
 
 const ReceivePayments = () => {
@@ -26,10 +27,16 @@ const ReceivePayments = () => {
         }
         return phoneNumber;
       };
-
+      const payservice = new PaymentService();
     const handleChange = (panel) => (event, newExpanded) => {
       setExpanded(newExpanded ? panel : false);
     };
+    let handleLogout = (e) => {
+        e.preventDefault();
+        localStorage.removeItem("token");
+        localStorage.removeItem("role");
+        window.location.href = "/";
+      };
     useEffect(() => {
         propertyService.getLandlordProperties()
             .then(fetchedProperties => {
@@ -38,9 +45,9 @@ const ReceivePayments = () => {
             .catch(error => {
                 // Handle error
             });
-
-        propertyService.getPropertyReceipts()
+        payservice.getPropertyReceipts()
             .then(fetchedReceipts => {
+                console.log(fetchedReceipts)
                 setReceipts(fetchedReceipts);
             })
             .catch(error => {
@@ -54,7 +61,7 @@ const ReceivePayments = () => {
                     <Toolbar class="navbar">
                         <Link to="/landlord_dashboard"><Avatar class="small-logo" alt="Residence Realm Logo" src={rrlogo} /></Link>
                         <Typography class="title">Received Payments</Typography>
-                        <Link to="/">
+                        <Link onClick={handleLogout}>
                             <IconButton aria-label="delete" size="large" color='secondary'>
                                 <LogoutIcon fontSize="inherit" />
                             </IconButton>
@@ -70,13 +77,13 @@ const ReceivePayments = () => {
                         <div style={{ width: '700px', maxHeight: '700px', overflowY: 'auto' }}>
                             {receipts.map((receipt, index) => {
                                 // Find the property associated with the receipt
-                                const associatedProperty = properties.find(property => property.id === receipt.propertyId);
-    
+                                const associatedProperty = properties.find(property => property.id === receipt.property.id);
+
                                 if (associatedProperty) {
                                     // Find the first tenant in the property (assuming there's only one tenant per property in your data structure)
-                                    const associatedTenant = associatedProperty.tenants;
+                                    const associatedTenant = associatedProperty.tenants[0];
                                     console.log('associatedProperty:', associatedProperty);
-                                    console.log('associatedTenant:', associatedTenant);
+                                    //console.log('associatedTenant:', associatedTenant);
     
                                     return (
                                         <Accordion
