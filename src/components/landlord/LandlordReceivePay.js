@@ -136,4 +136,4 @@ const ReceivePayments = () => {
     );
 }
 
-export default ReceivePayments;
+export default  ReceivePayments;

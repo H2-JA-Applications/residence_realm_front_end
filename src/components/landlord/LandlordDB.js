@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import rrlogo from "../../images/rrlogo.png"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
 import IconButton from '@mui/material/IconButton';
 import AppBar from '@mui/material/AppBar';
@@ -20,12 +20,18 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 const LandlordDashboard = () => {
     const [properties, setProperties] = useState([]);
+    const [info, setInformation] = useState([]);
+    const navigate = useNavigate();
+    const inform = new UserInfo();
 
     let handleLogout = (e) => {
         e.preventDefault();
         localStorage.removeItem("token");
         localStorage.removeItem("role");
         window.location.href = "/"
+    }
+    const addTenantButton = () =>{
+        navigate('/landlord_dashboard/add_tenant'); 
     }
 
     useEffect(() => {
@@ -36,7 +42,7 @@ const LandlordDashboard = () => {
             .catch(error => {
 
             });
-        userInfo.viewInfo().then(data => {
+        inform.viewInfo().then(data => {
             if (!data) window.location.href = "/";
             setInformation(data);
         }).catch(error => {
@@ -84,7 +90,7 @@ const LandlordDashboard = () => {
                     <td>{property.rent}</td>
                     <td>
                         {property.tenants === null || property.tenants === undefined || property.tenants.length === 0 ? (
-                            <button onClick={() => { }}>Add Tenant</button>
+                            <button onClick={() => {addTenantButton()}}>Add Tenant</button>
                         ) : (
                             <p>{property.tenants[0].firstName} {property.tenants[0].lastName}</p>
                         )}
