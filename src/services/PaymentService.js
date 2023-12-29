@@ -38,7 +38,7 @@ export default class PaymentService{
         })
     }
     getPropertyReceipts() {
-        return axios.get(receivedProperties, { ...this.config, withCredentials: true })
+        return axios.get(receivedProperties, { ...this.config})
           .then(response => response.data)
       }
  
