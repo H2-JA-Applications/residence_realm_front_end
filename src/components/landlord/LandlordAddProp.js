@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import rrlogo from "../../images/rrlogo.png"
 import { Link, useNavigate } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -9,7 +9,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import PropertyService from '../../services/PropertyService';
-const Add_Rental = () => {
+const AddProperty = () => {
 
     let [address, setAddress] = useState('');
     let [rent, setRent] = useState('');
@@ -92,4 +92,4 @@ const Add_Rental = () => {
     );
 }
 
-export default Add_Rental;
+export default AddProperty;

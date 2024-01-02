@@ -1,10 +1,10 @@
 import axios from "axios";
 import {axiosInterceptor} from "../utils/useToken";
 axiosInterceptor();
-
+ 
 const upcomingURL = 'http://localhost:8080/upcoming/property';
 export default class UpcomingPaymentService{
-
+ 
     constructor() {
         const token = localStorage.getItem('token');
         this.config = {
@@ -13,7 +13,7 @@ export default class UpcomingPaymentService{
                 'Accept': '*/*',
                 'Authorization' : `Bearer ${token}`
             }
-            
+           
         };
     };
     getUpcomingDate(propertyID){
@@ -21,5 +21,5 @@ export default class UpcomingPaymentService{
         return axios.get(url, { ...this.config})
         .then(response => response.data)  
     };
-
+ 
 }

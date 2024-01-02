@@ -43,6 +43,7 @@ const AddTenant = () => {
     propertyService.addTenanttoProperty(propertyID, ten).then( ()=> {
       alert("Tenant added")
       localStorage.removeItem("propertyID");
+      window.location.href = "/landlord_dashboard";
     }).catch(error => {
       console.error('Error adding tenants:', error);
     });
@@ -83,15 +84,9 @@ const AddTenant = () => {
                 </Toolbar>
             </AppBar>
         </Box>
-    <div class="container">
-        <div class="panel">
+    <div class="dashboard">
             <form onSubmit= {handleSubmit}>
                 <section class="single-column">
-                <br />
-                <br />
-                <br />
-                <br />
-                    <section class="double-column">
                     {tenants ? (
                         <select name="tens" id="tens" value="" onChange={handleDropdownChange} class="input2">
                             <option value="">Select Tenant</option>
@@ -101,17 +96,15 @@ const AddTenant = () => {
                         </select>
                         ) : null}
                         <div class="input-form">
-                        <input type="text" id="email" readOnly />
+                        <input class="input" type="text" id="email" readOnly />
                         </div>
                         <div class="input-form">
-                        <input type="text" id="phoneNum" readOnly />
+                        <input class="input" type="text" id="phoneNum" readOnly />
+                        </div>
                         <input type="submit" value="Submit" class="dashboard-button"/>
                         <Link to="/landlord_dashboard"><button type = "button" class="dashboard-button">Back To Dashboard</button></Link>
-                        </div>
-                    </section>
                 </section>
             </form>
-        </div>
     </div>
 </body>
   );

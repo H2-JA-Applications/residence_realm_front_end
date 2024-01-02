@@ -11,12 +11,6 @@ import Avatar from '@mui/material/Avatar';
 import propertyService from '../../services/PropertyService';
 import UserInfo from '../../utils/userInfo';
 import Paper  from '@mui/material/Paper';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 
 const LandlordDashboard = () => {
     const [properties, setProperties] = useState([]);
@@ -30,10 +24,38 @@ const LandlordDashboard = () => {
         localStorage.removeItem("role");
         window.location.href = "/"
     }
+
+    const formatPhoneNumber = (phoneNumber) => {
+        const cleaned = ('' + phoneNumber).replace(/\D/g, '');
+        const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+     
+        if (match) {
+          return `(${match[1]}) ${match[2]} - ${match[3]}`;
+        }
+        return phoneNumber;
+      };
+
     const addTenantButton = (propertyID) =>{
         localStorage.setItem("propertyID", propertyID)
         navigate(`/landlord_dashboard/${propertyID}/add_tenant`); 
     }
+    const removeTenantButton = (propertyId, tenantId) => {
+        // Use propertyService to remove the tenant from the property
+        propertyService.removeTenanttoProperty(propertyId, tenantId)
+            .then(() => {
+                // Refresh the properties list after successfully removing the tenant
+                propertyService.getLandlordProperties()
+                    .then(fetchedProperties => {
+                        setProperties(fetchedProperties);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching properties after removing tenant:', error);
+                    });
+            })
+            .catch(error => {
+                console.error('Error removing tenant from property:', error);
+            });
+    };
 
     useEffect(() => {
         propertyService.getLandlordProperties()
@@ -49,14 +71,14 @@ const LandlordDashboard = () => {
         }).catch(error => {
             console.error('Error fetching information:', error);
         });
-    }, []);
+    }, [inform]);
     return(
         <body>
             <Box class="navboard" sx={{ flexGrow: 1}}>
                 <AppBar position="static">
                     <Toolbar class="navbar">
                         <Avatar class="small-logo" alt="Residence Realm Logo" src={rrlogo}/>
-                        <Typography class="title">Land Dashboard</Typography>
+                        <Typography class="title">Landlord Dashboard</Typography>
                         <Link  onClick={handleLogout}>
                         <IconButton aria-label="delete" size="large" color='secondary' >
                             <LogoutIcon fontSize="inherit"/>
@@ -93,7 +115,11 @@ const LandlordDashboard = () => {
                                         {property.tenants === null || property.tenants === undefined || property.tenants.length === 0 ? (
                                             <button onClick={() => {addTenantButton(property.id)}}>Add Tenant</button>
                                         ) : (
+                                            <div>
                                             <p>{property.tenants[0].firstName} {property.tenants[0].lastName}</p>
+                                            <button onClick={() => { removeTenantButton(property.id, property.tenants[0].id) }}
+                                            class="removetenant">-</button>
+                                            </div>
                                         )}
                                     </td>
                                 </tr>
@@ -105,10 +131,34 @@ const LandlordDashboard = () => {
                 </section>
                 <section class="box">
                     <div class="single-column">
+                    {info.data ? (
+                    <Paper elevation={3}>
+                        <Box p={5}>
+                        <Avatar sx={{float: 'right'}}>
+                            {info.data.firstName?.charAt(0).toUpperCase()}{info.data.lastName?.charAt(0).toUpperCase()}
+                        </Avatar>
+                        <Typography variant="h5" gutterBottom>
+                            Landlord Information
+                        </Typography>
+                        <Typography variant="body1">
+                            <strong>Name:</strong> {info.data.firstName} {info.data.lastName}
+                        </Typography>
+                        <Typography variant="body1">
+                            <strong>Email:</strong> {info.data.email}
+                        </Typography>
+                        <Typography variant="body1">
+                            <strong>Phone:</strong> {formatPhoneNumber(info.data.phoneNumber)}
+                        </Typography>
+                        <Typography variant="body1">
+                            <strong>Date of Birth:</strong> {new Date(info.data.dateOfBirth).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'UTC'  })}
+                        </Typography>
+                        </Box>
+                    </Paper>
+                    ) : null}
                         <p class="heading">Menu Options</p>
-                        <Link to="/landlord_dashboard/add_rentals"><button type = "button" class="dashboard-button">Add Property</button></Link>
-                        <Link to="/landlord_dashboard/receive_pay"><button type = "button" class="dashboard-button">Received Payments</button></Link>
-                        <Link to="/landlord_dashboard/track_late"><button type = "button" class="dashboard-button">Track Late Payment</button></Link>
+                        <Link to="/landlord_dashboard/addproperty"><button type = "button" class="dashboard-button">Add Property</button></Link>
+                        <Link to="/landlord_dashboard/receivedpayments"><button type = "button" class="dashboard-button">Received Payments</button></Link>
+                        <Link to="/landlord_dashboard/latepayments"><button type = "button" class="dashboard-button">Track Late Payment</button></Link>
                     </div>
                 </section>
             </div>

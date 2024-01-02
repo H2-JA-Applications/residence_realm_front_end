@@ -14,7 +14,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import PaymentService from '../../services/PaymentService';
 import propertyService from '../../services/PropertyService';
 
-const Track_Late = () => {
+const LatePayments = () => {
     const [properties, setProperties] = useState([]);
     const [receipts, setReceipts] = useState([]);
     const [expanded, setExpanded] = React.useState(null);
@@ -142,4 +142,4 @@ const Track_Late = () => {
         </body>
     );
 }
-export default Track_Late;
+export default LatePayments;

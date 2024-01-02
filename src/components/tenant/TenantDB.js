@@ -119,7 +119,7 @@ const TenantDashboard = () => {
                         </button>
                     </Link>
                        
-                        <Link to="/tenant_dashboard/payment_detail"><button type="button" class="dashboard-button">Pay History</button></Link>
+                        <Link to="/tenant_dashboard/payments"><button type="button" class="dashboard-button">Pay History</button></Link>
                     </section>
                     </div>
                 </div>
