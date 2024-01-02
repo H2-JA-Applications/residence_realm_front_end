@@ -11,6 +11,8 @@ import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import Paper  from '@mui/material/Paper';
 import UserInfo from '../../utils/userInfo';
+
+
 const TenantDashboard = () => {
     const [date] = useState(new Date());
     const authService = new UserInfo();
