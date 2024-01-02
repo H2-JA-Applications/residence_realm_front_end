@@ -134,7 +134,7 @@ const ReceivePayments = () => {
                         </div>
                     )}
                     <section class="double-column">
-                        <Link to="/landlord_dashboard/track_late"><button type="button" class="dashboard-button">Track Late Payment</button></Link>
+                        <Link to="/landlord_dashboard/latepayments"><button type="button" class="dashboard-button">Track Late Payment</button></Link>
                         <Link to="/landlord_dashboard"><button type="button" class="dashboard-button">Back To Dashboard</button></Link>
                     </section>
                 </section>

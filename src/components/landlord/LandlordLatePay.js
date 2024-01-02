@@ -133,10 +133,7 @@ const LatePayments = () => {
                             })}
                         </div>
                     )}
-                    <section class="double-column">
-                        <Link to="/landlord_dashboard/track_late"><button type="button" class="dashboard-button">Track Late Payment</button></Link>
-                        <Link to="/landlord_dashboard"><button type="button" class="dashboard-button">Back To Dashboard</button></Link>
-                    </section>
+                    <Link to="/landlord_dashboard"><button type="button" class="dashboard-button">Back To Dashboard</button></Link>
                 </section>
             </div>
         </body>
