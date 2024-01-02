@@ -514,7 +514,7 @@ body {
 /* table information */
 .lltable {
     display: block;
-    width: 1000px;
+    width: 800px;
     max-height: 600px;
     padding: 10px;
 

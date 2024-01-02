@@ -67,11 +67,11 @@ const LandlordDashboard = () => {
             
             <div class="dashboard">
                 <section class="box">
-                <table>
+                <table class="lltable">
                     <thead>
                         <tr>
                             <th>Address</th>
-                            <th>Apartment #</th>
+                            <th>Apt #</th>
                             <th>Type</th>
                             <th>Rent</th>
                             <th>Tenant</th>
@@ -86,7 +86,7 @@ const LandlordDashboard = () => {
                                     <td>{property.address}</td>
                                     <td>
                                         {property.apartmentType === 'House' ? '---' : property.apartmentNumber}
-                                    </td>
+                                    </td>   
                                     <td>{property.apartmentType}</td>
                                     <td>{property.rent}</td>
                                     <td>
