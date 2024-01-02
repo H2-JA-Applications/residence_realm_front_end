@@ -11,6 +11,8 @@ import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import Paper  from '@mui/material/Paper';
 import UserInfo from '../../utils/userInfo';
+
+
 const TenantDashboard = () => {
     const [date] = useState(new Date());
     const authService = new UserInfo();
@@ -86,9 +88,7 @@ const TenantDashboard = () => {
                         </Box>
                     </Paper>
                     ) : null}
-    
-
-                    {information.data && information.data.rentedProperty !== undefined ? (
+                    {information.data && information.data.rentedProperties !== undefined ? (
                             <p className="upcoming">UPCOMING PAYMENT: {date.toLocaleDateString()}</p>
                             ) : (
                             <p className="upcoming">NO PROPERTY RENTED</p>
