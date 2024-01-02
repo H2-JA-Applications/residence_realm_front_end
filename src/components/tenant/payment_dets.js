@@ -17,6 +17,13 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 const PaymentDetails = () => {
     const [payments, setPayments] = useState([]);
     const paymentService = new PaymentService();
+
+    let handleLogout = (e) => {
+        e.preventDefault();
+        localStorage.removeItem("token");
+        localStorage.removeItem("role");
+        window.location.href = "/"
+    }
  
     useEffect(() => {
         // Load payment history when the component mounts
@@ -34,7 +41,7 @@ const PaymentDetails = () => {
                     <Toolbar class="navbar">
                     <Link to="/tenant_dashboard"><Avatar class="small-logo" alt="Residence Realm Logo" src={rrlogo}/></Link>
                         <Typography class="title">Payment History</Typography>
-                        <Link to="/">
+                        <Link onClick={handleLogout}>
                         <IconButton aria-label="delete" size="large" color='secondary'>
                             <LogoutIcon fontSize="inherit"/>
                         </IconButton></Link>
