@@ -77,7 +77,7 @@ const ReceivePayments = () => {
                         <div style={{ width: '700px', maxHeight: '700px', overflowY: 'auto' }}>
                             {receipts.map((receipt, index) => {
                                 // Find the property associated with the receipt
-                                const associatedProperty = properties.find(property => property.id === receipt.property.id);
+                                const associatedProperty = properties.find(property => property.id === receipt.id);
 
                                 if (associatedProperty) {
                                     // Find the first tenant in the property (assuming there's only one tenant per property in your data structure)
