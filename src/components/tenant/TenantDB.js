@@ -35,10 +35,8 @@ const TenantDashboard = () => {
         }).catch(error => {
             console.error('Error fetching date:', error);
         });
-        
 
     }
-      
     useEffect(() => {
         // Load payment history when the component mounts
         authService.viewInfo().then(data => {
@@ -74,11 +72,11 @@ const TenantDashboard = () => {
             </Box>
                 <div class="dashboard">
                 <div class="box">
-                        {information.data && information.data.rentedProperty !== undefined ? (
-                                <p className="upcoming">UPCOMING PAYMENT: {date.toLocaleDateString()}</p>
-                                ) : (
-                                <p className="upcoming">NO PROPERTY RENTED</p>
-                            )}
+                    {information.data && information.data.rentedProperties !== undefined ? (
+                        <p className="upcoming">UPCOMING PAYMENT: {new Date(dates).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'UTC'})}</p>
+                        ) : (
+                        <p className="upcoming">NO PROPERTY RENTED</p>
+                    )}
                     </div>        
                     <div class="box">
                     <section class="single-column">
@@ -101,7 +99,7 @@ const TenantDashboard = () => {
                             <strong>Phone:</strong> {formatPhoneNumber(information.data.phoneNumber)}
                         </Typography>
                         <Typography variant="body1">
-                            <strong>Date of Birth:</strong> {new Date(information.data.dateOfBirth).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })}
+                            <strong>Date of Birth:</strong> {new Date(information.data.dateOfBirth).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'UTC'  })}
                         </Typography>
                         </Box>
                     </Paper>
