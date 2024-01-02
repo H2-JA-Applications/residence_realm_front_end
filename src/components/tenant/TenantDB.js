@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import rrlogo from "../../images/rrlogo.png"
 import { Link } from 'react-router-dom';
-
+ 
 import LogoutIcon from '@mui/icons-material/Logout';
 import IconButton from '@mui/material/IconButton';
 import AppBar from '@mui/material/AppBar';
@@ -12,18 +12,18 @@ import Avatar from '@mui/material/Avatar';
 import Paper  from '@mui/material/Paper';
 import UserInfo from '../../utils/userInfo';
 import UpcomingPaymentService from '../../services/UpcomingPayService';
-
-
+ 
+ 
 const TenantDashboard = () => {
     let [dates, setDates] = useState();
     const authService = new UserInfo();
     const upcomingPayService = new UpcomingPaymentService();
-
+ 
     let [information, setInformation] = useState([]);
     const formatPhoneNumber = (phoneNumber) => {
         const cleaned = ('' + phoneNumber).replace(/\D/g, '');
         const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
-      
+     
         if (match) {
           return `(${match[1]}) ${match[2]} - ${match[3]}`;
         }
@@ -35,10 +35,8 @@ const TenantDashboard = () => {
         }).catch(error => {
             console.error('Error fetching date:', error);
         });
-        
-
+ 
     }
-      
     useEffect(() => {
         // Load payment history when the component mounts
         authService.viewInfo().then(data => {
@@ -49,14 +47,14 @@ const TenantDashboard = () => {
         });
          
     },);
-
+ 
     let handleLogout = (e) => {
         e.preventDefault();
         localStorage.removeItem("token");
         localStorage.removeItem("role");
         window.location.href = "/"
     }
-
+ 
     return (
         <body>
             <Box class="navboard" sx={{ flexGrow: 1 }}>
@@ -74,11 +72,11 @@ const TenantDashboard = () => {
             </Box>
                 <div class="dashboard">
                 <div class="box">
-                        {information.data && information.data.rentedProperty !== undefined ? (
-                                <p className="upcoming">UPCOMING PAYMENT: {date.toLocaleDateString()}</p>
-                                ) : (
-                                <p className="upcoming">NO PROPERTY RENTED</p>
-                            )}
+                    {information.data && information.data.rentedProperties !== undefined ? (
+                        <p className="upcoming">UPCOMING PAYMENT: {new Date(dates).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'UTC'})}</p>
+                        ) : (
+                        <p className="upcoming">NO PROPERTY RENTED</p>
+                    )}
                     </div>        
                     <div class="box">
                     <section class="single-column">
@@ -101,12 +99,12 @@ const TenantDashboard = () => {
                             <strong>Phone:</strong> {formatPhoneNumber(information.data.phoneNumber)}
                         </Typography>
                         <Typography variant="body1">
-                            <strong>Date of Birth:</strong> {new Date(information.data.dateOfBirth).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })}
+                            <strong>Date of Birth:</strong> {new Date(information.data.dateOfBirth).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'UTC'  })}
                         </Typography>
                         </Box>
                     </Paper>
                     ) : null}
-                    
+                   
                     <p class="heading">Menu Options</p>
                     <Link to="/tenant_dashboard/payment">
                         <button
@@ -120,7 +118,7 @@ const TenantDashboard = () => {
                         Make Payment
                         </button>
                     </Link>
-                        
+                       
                         <Link to="/tenant_dashboard/payment_detail"><button type="button" class="dashboard-button">Pay History</button></Link>
                     </section>
                     </div>
@@ -128,6 +126,6 @@ const TenantDashboard = () => {
         </body>
     )
 }
-
+ 
 //dates.toLocaleDateString()
 export default TenantDashboard;
