@@ -66,47 +66,50 @@ const LandlordDashboard = () => {
             </Box>
             
             <div class="dashboard">
-                <section class="single-column">
-                <table>
-                <thead>
-    <tr>
-        <th>Address</th>
-        <th>Apartment #</th>
-        <th>Type</th>
-        <th>Rent</th>
-        <th>Tenant</th>
-        <th></th>
-    </tr>
-</thead>
-{properties ? (
-    <tbody>
-        {properties.map((property, i) => {
-            return (
-                <tr key={property.id}>
-                    <td>{property.address}</td>
-                    <td>
-                        {property.apartmentType === 'House' ? '---' : property.apartmentNumber}
-                    </td>
-                    <td>{property.apartmentType}</td>
-                    <td>{property.rent}</td>
-                    <td>
-                        {property.tenants === null || property.tenants === undefined || property.tenants.length === 0 ? (
-                            <button onClick={() => {addTenantButton(property.id)}}>Add Tenant</button>
-                        ) : (
-                            <p>{property.tenants[0].firstName} {property.tenants[0].lastName}</p>
-                        )}
-                    </td>
-                </tr>
-            );
-        })}
-    </tbody>
-) : null}
+                <section class="box">
+                <table class="lltable">
+                    <thead>
+                        <tr>
+                            <th>Address</th>
+                            <th>Apt #</th>
+                            <th>Type</th>
+                            <th>Rent</th>
+                            <th>Tenant</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    {properties ? (
+                    <tbody>
+                        {properties.map((property, i) => {
+                            return (
+                                <tr key={property.id}>
+                                    <td>{property.address}</td>
+                                    <td>
+                                        {property.apartmentType === 'House' ? '---' : property.apartmentNumber}
+                                    </td>   
+                                    <td>{property.apartmentType}</td>
+                                    <td>{property.rent}</td>
+                                    <td>
+                                        {property.tenants === null || property.tenants === undefined || property.tenants.length === 0 ? (
+                                            <button onClick={() => {addTenantButton(property.id)}}>Add Tenant</button>
+                                        ) : (
+                                            <p>{property.tenants[0].firstName} {property.tenants[0].lastName}</p>
+                                        )}
+                                    </td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                    ) : null}
                 </table>
-
-                    <p class="heading">Menu Options</p>
-                    <Link to="/landlord_dashboard/add_rentals"><button type = "button" class="dashboard-button">Add Property</button></Link>
-                    <Link to="/landlord_dashboard/receive_pay"><button type = "button" class="dashboard-button">Received Payments</button></Link>
-                    <Link to="/landlord_dashboard/track_late"><button type = "button" class="dashboard-button">Track Late Payment</button></Link>
+                </section>
+                <section class="box">
+                    <div class="single-column">
+                        <p class="heading">Menu Options</p>
+                        <Link to="/landlord_dashboard/add_rentals"><button type = "button" class="dashboard-button">Add Property</button></Link>
+                        <Link to="/landlord_dashboard/receive_pay"><button type = "button" class="dashboard-button">Received Payments</button></Link>
+                        <Link to="/landlord_dashboard/track_late"><button type = "button" class="dashboard-button">Track Late Payment</button></Link>
+                    </div>
                 </section>
             </div>
 

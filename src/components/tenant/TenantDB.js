@@ -72,8 +72,15 @@ const TenantDashboard = () => {
                     </Toolbar>
                 </AppBar>
             </Box>
-            <div class="container">
                 <div class="dashboard">
+                <div class="box">
+                        {information.data && information.data.rentedProperty !== undefined ? (
+                                <p className="upcoming">UPCOMING PAYMENT: {date.toLocaleDateString()}</p>
+                                ) : (
+                                <p className="upcoming">NO PROPERTY RENTED</p>
+                            )}
+                    </div>        
+                    <div class="box">
                     <section class="single-column">
                     {information.data ? (
                     <Paper elevation={3}>
@@ -99,14 +106,6 @@ const TenantDashboard = () => {
                         </Box>
                     </Paper>
                     ) : null}
-                    {information.data && information.data.rentedProperties !== undefined ? (
-                        <p className="upcoming">
-                            UPCOMING PAYMENT: {dates ? new Date(dates).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'UTC' }) : 'No upcoming payment'}
-                        </p>
-                    ) : (
-                        <p className="upcoming">NO PROPERTY RENTED</p>
-                    )}
-
                     
                     <p class="heading">Menu Options</p>
                     <Link to="/tenant_dashboard/payment">
@@ -124,8 +123,8 @@ const TenantDashboard = () => {
                         
                         <Link to="/tenant_dashboard/payment_detail"><button type="button" class="dashboard-button">Pay History</button></Link>
                     </section>
+                    </div>
                 </div>
-            </div>
         </body>
     )
 }
