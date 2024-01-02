@@ -11,11 +11,14 @@ import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import Paper  from '@mui/material/Paper';
 import UserInfo from '../../utils/userInfo';
+import UpcomingPaymentService from '../../services/UpcomingPayService';
 
 
 const TenantDashboard = () => {
-    const [date] = useState(new Date());
+    let [dates, setDates] = useState();
     const authService = new UserInfo();
+    const upcomingPayService = new UpcomingPaymentService();
+
     let [information, setInformation] = useState([]);
     const formatPhoneNumber = (phoneNumber) => {
         const cleaned = ('' + phoneNumber).replace(/\D/g, '');
@@ -26,17 +29,25 @@ const TenantDashboard = () => {
         }
         return phoneNumber;
       };
+    function getDate(propId){
+        upcomingPayService.getUpcomingDate(propId).then(data2 => {
+            setDates(data2[0].dueDate);
+        }).catch(error => {
+            console.error('Error fetching date:', error);
+        });
+        
 
+    }
       
     useEffect(() => {
         // Load payment history when the component mounts
         authService.viewInfo().then(data => {
-            if (!data) window.location.href = "/";
             setInformation(data);
+            getDate(information.data.rentedProperties[0].id)
         }).catch(error => {
             console.error('Error fetching information:', error);
         });
-        
+         
     },);
 
     let handleLogout = (e) => {
@@ -95,9 +106,6 @@ const TenantDashboard = () => {
                         </Box>
                     </Paper>
                     ) : null}
-    
-
-
                     
                     <p class="heading">Menu Options</p>
                     <Link to="/tenant_dashboard/payment">
@@ -121,4 +129,5 @@ const TenantDashboard = () => {
     )
 }
 
+//dates.toLocaleDateString()
 export default TenantDashboard;

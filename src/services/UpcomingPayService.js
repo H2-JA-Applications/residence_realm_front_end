@@ -2,7 +2,7 @@ import axios from "axios";
 import {axiosInterceptor} from "../utils/useToken";
 axiosInterceptor();
 
-const upcomingURL = 'http://localhost:8080/api/upcoming/property';
+const upcomingURL = 'http://localhost:8080/upcoming/property';
 export default class UpcomingPaymentService{
 
     constructor() {
@@ -16,8 +16,9 @@ export default class UpcomingPaymentService{
             
         };
     };
-    getUpcomingDate(){
-        return axios.get(upcomingURL, { ...this.config})
+    getUpcomingDate(propertyID){
+        let url = `${upcomingURL}/${propertyID}`;
+        return axios.get(url, { ...this.config})
         .then(response => response.data)  
     };
 
