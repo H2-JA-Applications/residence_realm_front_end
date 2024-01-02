@@ -11,11 +11,14 @@ import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import Paper  from '@mui/material/Paper';
 import UserInfo from '../../utils/userInfo';
+import UpcomingPaymentService from '../../services/UpcomingPayService';
 
 
 const TenantDashboard = () => {
-    const [date] = useState(new Date());
+    let [dates, setDates] = useState();
     const authService = new UserInfo();
+    const upcomingPayService = new UpcomingPaymentService();
+
     let [information, setInformation] = useState([]);
     const formatPhoneNumber = (phoneNumber) => {
         const cleaned = ('' + phoneNumber).replace(/\D/g, '');
@@ -26,17 +29,25 @@ const TenantDashboard = () => {
         }
         return phoneNumber;
       };
+    function getDate(propId){
+        upcomingPayService.getUpcomingDate(propId).then(data2 => {
+            setDates(data2[0].dueDate);
+        }).catch(error => {
+            console.error('Error fetching date:', error);
+        });
+        
 
+    }
       
     useEffect(() => {
         // Load payment history when the component mounts
         authService.viewInfo().then(data => {
-            if (!data) window.location.href = "/";
             setInformation(data);
+            getDate(information.data.rentedProperties[0].id)
         }).catch(error => {
             console.error('Error fetching information:', error);
         });
-        
+         
     },);
 
     let handleLogout = (e) => {
@@ -89,10 +100,12 @@ const TenantDashboard = () => {
                     </Paper>
                     ) : null}
                     {information.data && information.data.rentedProperties !== undefined ? (
-                            <p className="upcoming">UPCOMING PAYMENT: {date.toLocaleDateString()}</p>
-                            ) : (
-                            <p className="upcoming">NO PROPERTY RENTED</p>
-                        )}
+                        <p className="upcoming">
+                            UPCOMING PAYMENT: {dates ? new Date(dates).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'UTC' }) : 'No upcoming payment'}
+                        </p>
+                    ) : (
+                        <p className="upcoming">NO PROPERTY RENTED</p>
+                    )}
 
                     
                     <p class="heading">Menu Options</p>
@@ -117,4 +130,5 @@ const TenantDashboard = () => {
     )
 }
 
+//dates.toLocaleDateString()
 export default TenantDashboard;
