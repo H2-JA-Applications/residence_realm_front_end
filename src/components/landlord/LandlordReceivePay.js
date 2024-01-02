@@ -102,7 +102,7 @@ const ReceivePayments = () => {
                                             <AccordionDetails style={{ background: '#444' }}>
                                                 <Typography>
                                                     <p>Amount: {receipt.amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
-                                                    <p>Date Paid: {new Date(receipt.datePaid).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })}</p>
+                                                    <p>Date Paid: {new Date(receipt.datePaid).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'UTC' })}</p>
                                                     <p>Payment Status: {receipt.paymentStatus}</p>
                                                     <hr style={{ borderTop: '1px solid #fff', margin: '10px 0' }} />
                                                     {/* Display Tenant Information */}

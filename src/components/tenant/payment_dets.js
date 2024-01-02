@@ -62,7 +62,7 @@ const PaymentDetails = () => {
                                     <AccordionDetails sx={{ backgroundColor: '#f0f0f0' }}>
                                         <Typography>Status: {payment.paymentStatus}</Typography>
                                         <Typography>Date of Payment: 
-                                            {new Date(payment.datePaid).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })}
+                                            {new Date(payment.datePaid).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'UTC' })}
                                             </Typography>
                                         <Typography>Amount Paid: {payment.amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</Typography>
                                         {/* Add more details as needed */}
